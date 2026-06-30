@@ -35,6 +35,11 @@ Und genau jetzt, während ich das hier so hinschreibe, fällt mir auf, dass das 
 
 Und wenn auch der letzte Agent fertig ist, geht es in meiner Factory zurück zum Menschen, der die finale Abnahme macht. Das ist die Factory im Groben: PO, Dev, Code Review, QA. Die Feinheiten ergänzt man je nach Geschmack und Erfahrung.
 
+```mermaid
+flowchart LR
+    Planner --> Builder --> Reviewer --> Validator
+```
+
 ## Die Hypothese
 
 Noch einmal in einem Satz: Factories liefern höhere Qualität zu geringeren Kosten. Wenn das stimmt, sollte es sich in einem direkten Vergleich zeigen lassen. Also mein erstes Setup: eine Beispiel-Aufgabe einmal als Vibe-Coding-Session, einmal als Factory. Mal sehen.
