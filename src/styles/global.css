@@ -109,6 +109,12 @@ a {
   margin: 0 0 1.25rem;
 }
 
+.prose table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .prose ul,
 .prose ol {
   padding-left: 1.4rem;
