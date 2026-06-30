@@ -104,15 +104,14 @@ a {
 .prose ul,
 .prose ol,
 .prose blockquote,
-.prose pre,
-.prose table {
+.prose pre {
   margin: 0 0 1.25rem;
 }
 
-.prose table {
-  display: block;
+.prose .table-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  margin: 0 0 1.25rem;
 }
 
 .prose ul,
@@ -194,6 +193,5 @@ a {
   visibility: hidden;
 }
 .prose pre.mermaid svg {
-  max-width: 100%;
-  height: auto;
+  max-width: 100%;  height: auto;
 }

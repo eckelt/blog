@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import remarkMermaid from "./src/plugins/remark-mermaid.mjs";
+import rehypeTableScroll from "./src/plugins/rehype-table-scroll.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,5 +10,6 @@ export default defineConfig({
   integrations: [sitemap()],
   markdown: {
     remarkPlugins: [remarkMermaid],
+    rehypePlugins: [rehypeTableScroll],
   },
 });
