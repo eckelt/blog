@@ -33,6 +33,14 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
           </ul>
         )
       }
+      <div class="speech-controls">
+        <button type="button" id="speech-toggle" class="speech-btn" hidden>
+          🔊 Vorlesen
+        </button>
+        <button type="button" id="speech-stop" class="speech-btn" hidden>
+          Stopp
+        </button>
+      </div>
     </header>
     <div class="prose">
       <slot />
@@ -44,6 +52,7 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
     if (document.querySelector("pre.mermaid")) {
       import("../scripts/mermaid").then((m) => m.default());
     }
+    import("../scripts/speech").then((m) => m.default());
   </script>
 
   <style>
@@ -96,6 +105,29 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
       background: var(--badge-cloud-bg);
       padding: 0.2rem 0.6rem;
       border-radius: 999px;
+    }
+    .speech-controls {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+    .speech-btn {
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      transition:
+        border-color 0.2s,
+        color 0.2s;
+    }
+    .speech-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
     }
   </style>
 </BaseLayout>
