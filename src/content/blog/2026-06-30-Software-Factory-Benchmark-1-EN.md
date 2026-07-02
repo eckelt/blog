@@ -25,6 +25,11 @@ The **Planner** clarifies requirements, much like a Product Owner in refinement.
 
 In short: PO, Dev, Code Review, QA — just as an agent workflow.
 
+```mermaid
+flowchart LR
+    Planner --> Builder --> Reviewer --> Validator
+```
+
 I take a factory apart in detail — the role configs, why the review step earns its place, and the order I run things in — in a separate post: [Anatomy of a Factory](/blog/2026-07-01-software-factory-anatomy).
 
 ## The hypothesis
@@ -35,15 +40,9 @@ Once more in a single sentence: factories deliver higher quality at lower cost. 
 
 Build a Kanban board web app, similar to what Trello used to be. No crazy features. We want results, not burned tokens.
 
-In hindsight, that was exactly the problem.
+In hindsight, that last decision quietly tilted the whole thing — but I only saw how once the numbers were in.
 
-A Kanban board is about the worst task you could pick if you want to show that a factory beats vibe coding. Trello clones, drag-and-drop lists, cards, columns, simple board APIs — that stuff is probably represented plenty in the training data. This is tutorial material. This is GitHub-repo material. This is "build me a small example app" material.
-
-That hands vibe coding an advantage. A single agent doesn't have to analyze deeply here; it mostly has to reproduce a known pattern. And that's exactly what the models are good at.
-
-This matters for interpreting the numbers below: if vibe coding does well here, that doesn't mean it works just as well in real projects. It might also mean I picked a task that plays to vibe coding's strengths. Noted.
-
-### The first setup
+### KISS – Keep it simple, stupid
 
 Since the task is so simple, I picked the most direct approach I could think of. I just had an application built in a single one-shot that fulfills the task. And lo and behold, 22 minutes later I had a — once again surprisingly solid — result. Token cost about $4.
 
@@ -51,11 +50,9 @@ For the second experiment, I just as naively told Opus to act as an orchestrator
 
 And what does a good scientist do when the result doesn't fit the hypothesis? First, question the approach. 😉 My approach was deliberately kept simple, after all.
 
-_KISS – Keep it simple, stupid._
+### My buddy Opus
 
-### The second setup
-
-Together with my buddy Opus I wrote a spec describing a Trello board. That I was handing vibe coding an advantage with this wasn't clear to me at the time. But more on that shortly. What mattered first was that all experiments got the same spec. Yes, the spec part is a particularly interesting piece of the factory, but I haven't yet come up with a way to integrate it into the benchmark reproducibly. So we note that as sloppy and as a to-do for future me — but for now the spec is held constant across these experiments.
+Together with Claude's Opus I wrote a spec describing a Trello board. That I was handing vibe coding an advantage with this wasn't clear to me at the time. But more on that shortly. What mattered first was that all experiments got the same spec. Yes, the spec part is a particularly interesting piece of the factory, but I haven't yet come up with a way to integrate it into the benchmark reproducibly. So we note that as sloppy and as a to-do for future me — but for now the spec is held constant across these experiments.
 
 | Code                          | Method                                                          | Expectation                              |
 | ----------------------------- | --------------------------------------------------------------- | ---------------------------------------- |
@@ -115,7 +112,7 @@ What I couldn't measure is the actual token consumption of the sub-agents. In my
 What I'm not measuring here is the software quality itself. In theory the more expensive factory could deliver better code and thus justify the surcharge. Possible. But I can't prove that with this setup — quality simply isn't one of my metrics here. Honestly, that's the first objection that occurred to me — so it belongs in the post. Note to future me: quality has to go in as a metric.
 
 **1. Vibe coding sucks — d'uh!**
-Is what I wanted to write. But the numbers don't make it that easy for me. Precisely because the task was a Kanban board, vibe coding had an advantage — known pattern, plenty of training data. So the real point isn't "vibe coding can't do anything," but: vibe coding is hard to control. Sometimes a surprising amount comes out, sometimes it gets expensive, sometimes the circuit breaker trips. Interesting for experiments, a problem for reproducible software development.
+Is what I wanted to write. But the numbers don't make it that easy for me. Precisely because the task was a Kanban board, vibe coding had an advantage. Trello clones, drag-and-drop lists, cards, columns, simple board APIs — that's tutorial material, GitHub-repo material, "build me a small example app" material, and it's all over the training data. A single agent doesn't have to analyze deeply here; it mostly has to reproduce a known pattern, and that's exactly what the models are good at. So the real point isn't "vibe coding can't do anything," but: vibe coding is hard to control. Sometimes a surprising amount comes out, sometimes it gets expensive, sometimes the circuit breaker trips. Interesting for experiments, a problem for reproducible software development.
 
 **2. GPT and Claude Code are usually roughly on par on cost.**
 Not especially spectacular, but worth noting once.
@@ -144,10 +141,13 @@ That's exactly where a good software factory should be stronger. Not at "build m
 
 I need a different setup. The next task has to be more complex, smell less like a tutorial, and sit closer to real projects — ideally with an existing codebase, conflicting requirements, a migration path, tests and real trade-offs.
 
-And I'm not just describing that as a hope. It's already running. Since last week I've had a factory going against Deskleaf.one's real codebase. It doesn't deliver satisfactorily yet — lots of loops, and at the end something is regularly missing (the deployment, for instance). That's precisely what makes it the more interesting case: not a clean success on a toy problem, but a factory wrestling with a real, existing system. That's the next post.
+And I'm not just describing that as a hope. It's already running. Since last week I've had a factory going against Deskleaf's[^1] real codebase. It doesn't deliver satisfactorily yet — lots of loops, and at the end something is regularly missing (the deployment, for instance). That's precisely what makes it the more interesting case: not a clean success on a toy problem, but a factory wrestling with a real, existing system. That's the next post.
 
 The second open problem is measurability. What I couldn't track reliably in this run is the token consumption of the self-spawned sub-agents — and that concerns not just my factory, but Claude Code and Codex too. It looks like the tools themselves have a kind of generic factory built in. That one isn't adapted to my project, my standards and my architecture, and my hunch is that it hits its limits faster in larger existing codebases. But that's just another hypothesis. First I need the tracking.
 
 And that's why I'm carrying on.
 
 To be continued…
+
+---
+[^1]: A side project of mine to organize my meetings with [Obsidian](https://obsidian.md). Wanna know more? Have a look at [deskleaf.one](https://deskleaf.one).

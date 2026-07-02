@@ -1,7 +1,7 @@
 ---
 title: "Software Factories sind eindeutig besser als alles bisher Dagewesene. Nur das zu belegen fällt mir überraschend schwer."
 description: "Ein Benchmark beweist ganz einfach, dass Software Factories unschlagbar sind. Schade das meine Ergebnisse das nicht so klar belegen. :S"
-pubDate: 2026-06-30
+# pubDate: 2026-06-30  # de-published: uncomment to bring the German post back
 lang: "de"
 translationKey: "sf-benchmark-1"
 tags: ["AI", "Software Factory", "Hackers&Wizards"]

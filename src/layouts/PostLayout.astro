@@ -16,7 +16,7 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
     <a href="/" class="back">&larr; Alle Beiträge</a>
     <header class="post-header">
       <div class="post-meta">
-        <FormattedDate date={pubDate} />
+        {pubDate && <FormattedDate date={pubDate} />}
         {
           updatedDate && (
             <span>· aktualisiert <FormattedDate date={updatedDate} /></span>

@@ -1,7 +1,7 @@
 ---
 title: "Two tweaks I was sure would improve the factory. One got expensive, one got weird."
 description: "Context-Pruning and the Agile Factory — the two variations I pulled out of the first benchmark to keep it readable. Here's what they actually did."
-pubDate: 2026-07-07
+pubDate: 2026-07-03
 lang: "en"
 tags: ["AI", "Software Factory", "Hackers&Wizards"]
 ---
