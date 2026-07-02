@@ -32,9 +32,10 @@ function themeVariables(scope: Element) {
     mainBkg: accentBg,
     nodeBorder: accent,
     nodeTextColor: accent,
-    // edges
+    // edges — label background matches the node fill so a label sitting
+    // on top of a node (as in the smart/dumb-zone divider) blends in
     lineColor: muted,
-    edgeLabelBackground: bg,
+    edgeLabelBackground: accentBg,
     // clusters / subgraphs
     clusterBkg: bg,
     clusterBorder: rule,
