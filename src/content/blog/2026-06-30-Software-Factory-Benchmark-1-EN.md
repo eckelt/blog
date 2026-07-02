@@ -25,7 +25,7 @@ The **Planner** clarifies requirements, much like a Product Owner in refinement.
 
 In short: PO, Dev, Code Review, QA — just as an agent workflow.
 
-I take a factory apart in detail — the role configs, why the review step earns its place, and the order I run things in — in a separate post: [Anatomy of a Factory](/blog/2026-06-25-software-factory-anatomy).
+I take a factory apart in detail — the role configs, why the review step earns its place, and the order I run things in — in a separate post: [Anatomy of a Factory](/blog/2026-07-01-software-factory-anatomy).
 
 ## The hypothesis
 

@@ -1,7 +1,7 @@
 ---
 title: "Anatomy of a factory: the roles, and why the review step earns its place"
-description: "The long version of what I keep calling a software factory — how I actually wire one up"
-pubDate: 2026-06-25
+description: "The long version of what I keep calling a software factory — how I actually wire one up, so the benchmark posts can stay short and link back here."
+pubDate: 2026-07-01
 lang: "en"
 tags: ["AI", "Software Factory", "Hackers&Wizards"]
 ---
