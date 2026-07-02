@@ -151,6 +151,7 @@ a {
 .zone-bar {
   color: var(--diagram-accent, var(--accent));
   margin: 0 0 1.25rem;
+  padding: 0 8%;
 }
 .zone-bar svg {
   display: block;
