@@ -46,7 +46,7 @@ In hindsight, that last decision quietly tilted the whole thing — but I only s
 
 Since the task is so simple, I picked the most direct approach I could think of. I just had an application built in a single one-shot that fulfills the task. And lo and behold, 22 minutes later I had a — once again surprisingly solid — result. Token cost about $4.
 
-For the second experiment, I just as naively told Opus to act as an orchestrator, discuss the task with a UX agent, produce a spec together with it, hand that to the Builder, and have the whole thing checked by a QA agent at the end. Result: the run took considerably longer and cost an estimated $37. That's neither faster nor cheaper.
+For the second experiment, I just as naively told Opus to act as an orchestrator, discuss the task with a UX agent, produce a spec together with them, hand that to the Builder, and have the whole thing checked by a QA agent at the end. Result: the run took considerably longer and cost an estimated $37. That's neither faster nor cheaper.
 
 And what does a good scientist do when the result doesn't fit the hypothesis? First, question the approach. 😉 My approach was deliberately kept simple, after all.
 
@@ -74,7 +74,7 @@ When I started the first experiments, I was still watching. A bit like staring a
 
 A sub-agent, launched?!
 
-This experiment was designed to run in a single agent only. The factory with the defined sub-agents was supposed to come later. That's exactly the advantage I see in factories: specialized sub-agents that handle a sub-task better in their own context window than in the main one. But here, in a pure research-plan session with Sonnet, the agent had spawned sub-agents on its own.
+This experiment was designed to run in a single agent only. The factory with the defined sub-agents was supposed to come later. That's exactly the advantage I see in factories: specialized sub-agents that handle a sub-task better in their own context window than in the main one. But here, in a pure research-plan session with Sonnet, the agent had spawned sub-agents on their own.
 
 That shifts the premise a little. If the tools already deploy sub-agents by themselves, then "a single agent vs. a factory" isn't cleanly separated anymore. Maybe modern coding tools already contain a small, generic factory. Just one that isn't adapted to my context, my rules and my architecture.
 
@@ -112,7 +112,7 @@ What I couldn't measure is the actual token consumption of the sub-agents. In my
 What I'm not measuring here is the software quality itself. In theory the more expensive factory could deliver better code and thus justify the surcharge. Possible. But I can't prove that with this setup — quality simply isn't one of my metrics here. Honestly, that's the first objection that occurred to me — so it belongs in the post. Note to future me: quality has to go in as a metric.
 
 **1. Vibe coding sucks — d'uh!**
-Is what I wanted to write. But the numbers don't make it that easy for me. Precisely because the task was a Kanban board, vibe coding had an advantage. Trello clones, drag-and-drop lists, cards, columns, simple board APIs — that's tutorial material, GitHub-repo material, "build me a small example app" material, and it's all over the training data. A single agent doesn't have to analyze deeply here; it mostly has to reproduce a known pattern, and that's exactly what the models are good at. So the real point isn't "vibe coding can't do anything," but: vibe coding is hard to control. Sometimes a surprising amount comes out, sometimes it gets expensive, sometimes the circuit breaker trips. Interesting for experiments, a problem for reproducible software development.
+Is what I wanted to write. But the numbers don't make it that easy for me. Precisely because the task was a Kanban board, vibe coding had an advantage. Trello clones, drag-and-drop lists, cards, columns, simple board APIs — that's tutorial material, GitHub-repo material, "build me a small example app" material, and it's all over the training data. A single agent doesn't have to analyze deeply here; they mostly have to reproduce a known pattern, and that's exactly what the models are good at. So the real point isn't "vibe coding can't do anything," but: vibe coding is hard to control. Sometimes a surprising amount comes out, sometimes it gets expensive, sometimes the circuit breaker trips. Interesting for experiments, a problem for reproducible software development.
 
 **2. GPT and Claude Code are usually roughly on par on cost.**
 Not especially spectacular, but worth noting once.

@@ -6,13 +6,13 @@ lang: "en"
 tags: ["AI", "Software Factory", "Hackers&Wizards"]
 ---
 
-In [the first benchmark](/2026-06-30-software-factory-benchmark-1-en) I pulled two variations out of the main story to keep it readable. The spine there was Vibe → Research→Plan→Implement → Factory. On top of the plain factory I had tried two ideas that were supposed to make it clearly better. They didn't behave the way I expected, and they were interesting enough that they earned their own post instead of crowding the first one.
+In [the first benchmark](/blog/2026-06-30-software-factory-benchmark-1-en) I pulled two variations out of the main story to keep it readable. The spine there was Vibe → Research→Plan→Implement → Factory. On top of the plain factory I had tried two ideas that were supposed to make it clearly better. They didn't behave the way I expected, and they were interesting enough that they earned their own post instead of crowding the first one.
 
 Same setup as before, in short: one spec describing a Trello-style Kanban board, held constant across all experiments. Two rounds — the first greenfield API only (R1), the second UI only (R2). A circuit breaker capped runaway cost. If you want the full context, read part 1 first; this post assumes it.
 
 ## The two ideas
 
-**Context-Pruning.** The context window is most effective in its first ~120k tokens, so I wanted to keep it as lean as possible. Whenever a decision gets made, I store it as an ADR (architecture decision record) instead of leaving it to sit in the running context. Sub-agents then load an ADR only when they actually need it. The bet: leaner context per agent, sharper focus, better output.
+**Context-Pruning.** The context window is most effective in its first ~120k tokens[^1], so I wanted to keep it as lean as possible. Whenever a decision gets made, I store it as an ADR (architecture decision record) instead of leaving it to sit in the running context. Sub-agents then load an ADR only when they actually need it. The bet: leaner context per agent, sharper focus, better output.
 
 **Agile Factory.** My attempt to hand the factory an unfair advantage. I let the agents communicate with each other, the way a cross-functional team does — the Planner talking to the Builder, the Builder checking back with the Reviewer, and so on, across rounds. If real teams get their edge from communication, maybe a factory could too.
 
@@ -57,3 +57,5 @@ The honest limitation underneath both findings: I couldn't cleanly measure the t
 That's also the thing I need before I take either of these seriously: reliable sub-agent tracking. Until I can see where the tokens actually go, "Agile Factory is too expensive" and "Pruning mysteriously wins at UI" are observations, not conclusions.
 
 So these two go back on the shelf for now — measured, noted, and waiting for a setup that can actually explain them.
+
+[^1]: Matt Pocock covers this in his talk ["Full Walkthrough - Workflow for AI Coding"](https://youtu.be/-QFHIoCo-Ko?t=202)
