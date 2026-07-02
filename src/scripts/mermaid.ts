@@ -14,23 +14,24 @@ function themeVariables(scope: Element) {
 
   // Falls back to the site accent when no post category sets --diagram-accent.
   const accent = v("--diagram-accent") || v("--accent");
+  const accentBg = v("--diagram-accent-bg") || v("--surface");
   const text = v("--text");
   const muted = v("--muted");
   const bg = v("--bg");
-  const surface = v("--surface");
   const rule = v("--rule");
 
   return {
     fontFamily: v("--font-body") || "sans-serif",
     fontSize: "15px",
     background: bg,
-    // nodes
-    primaryColor: surface,
-    primaryTextColor: text,
+    // nodes — filled and lettered like the matching tag pill: pale tint,
+    // accent-colored text and border, exactly like the tag's own styling
+    primaryColor: accentBg,
+    primaryTextColor: accent,
     primaryBorderColor: accent,
-    mainBkg: surface,
+    mainBkg: accentBg,
     nodeBorder: accent,
-    nodeTextColor: text,
+    nodeTextColor: accent,
     // edges
     lineColor: muted,
     edgeLabelBackground: bg,
