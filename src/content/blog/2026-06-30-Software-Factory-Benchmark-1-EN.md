@@ -5,7 +5,7 @@ pubDate: 2026-06-30
 tags: ["AI", "Software Factory", "Hackers&Wizards"]
 ---
 
-I recently became a freelancer to work full-time in AI consulting. So I wanted to prove, for myself, why software factories work so much better than what many people are doing today under the label of vibe coding.
+I recently became a freelancer to work full-time in AI consulting. So I wanted to prove, for myself, why software factories work so much better than what many people are doing today under the label of _vibe coding_.
 
 My first reaction was: easy-peasy.
 
@@ -19,26 +19,13 @@ Spoiler: it didn't turn out to be that simple.
 
 ## What is a software factory?
 
-To me, a _software factory_ is a setup of several specialized AI agents. Instead of one agent doing everything, multiple roles work together — much like a software development team.
+To me, a _software factory_ is a setup of several specialized AI agents. Instead of one agent doing everything, multiple roles work together — much like a software team.
 
-The **Planner** is essentially the PO of an agile team. It takes in the requirements. This can be configured however you like — I feed my requirements in as a GitHub issue and let the Planner run a few rounds with me, asking clarifying questions until the requirement is solid. That roughly corresponds to refinement, and this is also where splitting can happen. At the end, the specs to be implemented are set.
+The **Planner** clarifies requirements, much like a Product Owner in refinement. Specs come out of that. The **Builder** implements them. The **Reviewer** checks code quality, architecture and team conventions. The **Validator** tests whether the solution actually solves the problem. At the end, a human takes over for the final sign-off.
 
-Once that step is done, the specs go to the **Builder**. It implements them according to however this team develops in general. TDD is just one example worth mentioning here.
+In short: PO, Dev, Code Review, QA — just as an agent workflow.
 
-When the Builder thinks it's done, the **Reviewer** takes over. It checks whether the guardrails, architecture decisions and general guidelines were followed. Why this step? Because even when the Builder and Reviewer use the same model, the Reviewer usually finds something the Builder glossed over or forgot on the first pass. So this step adds a lot of quality.
-
-Once the hopefully few loops here are cleared, the **Validator** comes in. It checks whether the implementation actually solves the problem. The order can vary from factory to factory — some validate first whether it even works before correcting style and structure.
-
-And just now, as I'm writing this, it occurs to me that this order actually makes more sense. First check that it works, then make it pretty. I'm going to change that in my factory too.
-
-> Make it work, make it pretty, make it fast, make it work again, because you broke it while you made it fast.
-
-And when the last agent is done, in my factory it goes back to the human, who does the final sign-off. That's the factory in broad strokes: PO, Dev, Code Review, QA. You add the finer details to taste and experience.
-
-```mermaid
-flowchart LR
-    Planner --> Builder --> Reviewer --> Validator
-```
+I take a factory apart in detail — the role configs, why the review step earns its place, and the order I run things in — in a separate post: [Anatomy of a Factory](/blog/2026-06-25-software-factory-anatomy).
 
 ## The hypothesis
 
