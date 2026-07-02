@@ -9,10 +9,21 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, description, pubDate, updatedDate, tags } = post.data;
+
+// Maps freeform post tags onto the shared categorical badge palette from
+// tokens.css, kept consistent with the category chips on nils.ecke.lt.
+const TAG_BADGE: Record<string, "cloud" | "ai" | "lang" | "arch" | "lead" | "ux"> = {
+  AI: "ai",
+  "Software Factory": "arch",
+  "Hackers&Wizards": "ai",
+};
+const badgeFor = (tag: string) => TAG_BADGE[tag] ?? "cloud";
+// Mermaid diagrams pick up this post's category color via --diagram-accent.
+const primaryBadge = tags.length > 0 ? badgeFor(tags[0]) : "cloud";
 ---
 
 <BaseLayout title={title} description={description} type="article">
-  <article>
+  <article data-badge={primaryBadge}>
     <a href="/" class="back">&larr; Alle Beiträge</a>
     <header class="post-header">
       <div class="post-meta">
@@ -28,7 +39,7 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
         tags.length > 0 && (
           <ul class="tags">
             {tags.map((tag) => (
-              <li>{tag}</li>
+              <li class={`tag-${badgeFor(tag)}`}>{tag}</li>
             ))}
           </ul>
         )
@@ -41,8 +52,19 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
 
   <script>
     // Load + render Mermaid only on posts that actually contain a diagram.
-    if (document.querySelector("pre.mermaid")) {
-      import("../scripts/mermaid").then((m) => m.default());
+    // Waits for the "load" event so the external stylesheet is guaranteed to
+    // be applied before Mermaid reads our CSS custom properties — otherwise
+    // getComputedStyle can race the stylesheet fetch and Mermaid silently
+    // falls back to its own default (purple) theme instead of ours.
+    function bootMermaid() {
+      if (document.querySelector("pre.mermaid")) {
+        import("../scripts/mermaid").then((m) => m.default());
+      }
+    }
+    if (document.readyState === "complete") {
+      bootMermaid();
+    } else {
+      window.addEventListener("load", bootMermaid);
     }
   </script>
 
@@ -92,10 +114,50 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.04em;
-      color: var(--accent);
-      background: var(--badge-cloud-bg);
       padding: 0.2rem 0.6rem;
       border-radius: 999px;
+    }
+    .tag-cloud {
+      color: var(--badge-cloud);
+      background: var(--badge-cloud-bg);
+    }
+    .tag-ai {
+      color: var(--badge-ai);
+      background: var(--badge-ai-bg);
+    }
+    .tag-lang {
+      color: var(--badge-lang);
+      background: var(--badge-lang-bg);
+    }
+    .tag-arch {
+      color: var(--badge-arch);
+      background: var(--badge-arch-bg);
+    }
+    .tag-lead {
+      color: var(--badge-lead);
+      background: var(--badge-lead-bg);
+    }
+    .tag-ux {
+      color: var(--badge-ux);
+      background: var(--badge-ux-bg);
+    }
+    article[data-badge="cloud"] {
+      --diagram-accent: var(--badge-cloud);
+    }
+    article[data-badge="ai"] {
+      --diagram-accent: var(--badge-ai);
+    }
+    article[data-badge="lang"] {
+      --diagram-accent: var(--badge-lang);
+    }
+    article[data-badge="arch"] {
+      --diagram-accent: var(--badge-arch);
+    }
+    article[data-badge="lead"] {
+      --diagram-accent: var(--badge-lead);
+    }
+    article[data-badge="ux"] {
+      --diagram-accent: var(--badge-ux);
     }
   </style>
 </BaseLayout>

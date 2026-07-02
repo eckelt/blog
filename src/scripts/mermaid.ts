@@ -8,11 +8,12 @@ import mermaid from "mermaid";
  * the light and dark palette via prefers-color-scheme.
  */
 
-function themeVariables() {
-  const cs = getComputedStyle(document.documentElement);
+function themeVariables(scope: Element) {
+  const cs = getComputedStyle(scope);
   const v = (name: string) => cs.getPropertyValue(name).trim();
 
-  const accent = v("--accent");
+  // Falls back to the site accent when no post category sets --diagram-accent.
+  const accent = v("--diagram-accent") || v("--accent");
   const text = v("--text");
   const muted = v("--muted");
   const bg = v("--bg");
@@ -44,18 +45,18 @@ function themeVariables() {
   };
 }
 
-function configure() {
+function configure(scope: Element) {
   mermaid.initialize({
     startOnLoad: false,
     securityLevel: "strict",
     theme: "base",
-    themeVariables: themeVariables(),
+    themeVariables: themeVariables(scope),
     flowchart: { curve: "basis", htmlLabels: true },
   });
 }
 
-async function render(nodes: HTMLElement[]) {
-  configure();
+async function render(nodes: HTMLElement[], scope: Element) {
+  configure(scope);
   await mermaid.run({ nodes });
 }
 
@@ -65,12 +66,16 @@ export default function initMermaid() {
   );
   if (nodes.length === 0) return;
 
+  // Reads --diagram-accent from the post's <article> (set per its first tag),
+  // falling back to <html> when there's no enclosing article.
+  const scope = nodes[0].closest("article") ?? document.documentElement;
+
   // Preserve the original source so we can re-render on theme changes.
   nodes.forEach((node) => {
     if (!node.dataset.src) node.dataset.src = node.textContent ?? "";
   });
 
-  render(nodes);
+  render(nodes, scope);
 
   // Re-render with the other palette when the colour scheme flips.
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -79,6 +84,6 @@ export default function initMermaid() {
       node.removeAttribute("data-processed");
       node.innerHTML = node.dataset.src ?? "";
     });
-    render(nodes);
+    render(nodes, scope);
   });
 }
