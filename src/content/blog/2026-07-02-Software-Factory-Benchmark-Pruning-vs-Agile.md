@@ -14,13 +14,15 @@ Same setup as before, in short: one spec describing a Trello-style Kanban board,
 
 **Context-Pruning.** The context window is most effective in its first ~120k tokens[^1], so I wanted to keep it as lean as possible. Whenever a decision gets made, I store it as an ADR (architecture decision record) instead of leaving it to sit in the running context. Sub-agents then load an ADR only when they actually need it. The bet: leaner context per agent, sharper focus, better output.
 
-```mermaid
-%%{init: {'flowchart': {'nodeSpacing': 2, 'rankSpacing': 2}}}%%
-flowchart LR
-smart["smart"]
-dumb["dumb zone"]
-smart -. "120k" .- dumb
-```
+<div class="zone-bar">
+  <svg viewBox="0 0 400 84" role="img" aria-label="Context window split into a smart zone (first 120k tokens) and a dumb zone beyond that">
+    <rect x="1" y="1" width="398" height="58" rx="12" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.5" />
+    <line x1="80" y1="1" x2="80" y2="59" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" />
+    <text x="40" y="34" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="13">smart</text>
+    <text x="240" y="34" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-size="13">dumb zone</text>
+    <text x="80" y="75" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="11">120k</text>
+  </svg>
+</div>
 
 **Agile Factory.** My attempt to hand the factory an unfair advantage. I let the agents communicate with each other, the way a cross-functional team does — the Planner talking to the Builder, the Builder checking back with the Reviewer, and so on, across rounds. If real teams get their edge from communication, maybe a factory could too.
 
