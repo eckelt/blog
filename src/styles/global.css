@@ -58,7 +58,7 @@ a {
 }
 
 /* ── Uppercase section label (shared idiom) ── */
-.label {
+.section-label {
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.1em;

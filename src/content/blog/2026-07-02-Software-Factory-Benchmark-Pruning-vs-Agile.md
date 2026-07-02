@@ -14,6 +14,14 @@ Same setup as before, in short: one spec describing a Trello-style Kanban board,
 
 **Context-Pruning.** The context window is most effective in its first ~120k tokens[^1], so I wanted to keep it as lean as possible. Whenever a decision gets made, I store it as an ADR (architecture decision record) instead of leaving it to sit in the running context. Sub-agents then load an ADR only when they actually need it. The bet: leaner context per agent, sharper focus, better output.
 
+```mermaid
+block-beta
+columns 5
+smart["smart"]:1
+dumb["DUMB ZONE"]:4
+smart -. "120k" .- dumb
+```
+
 **Agile Factory.** My attempt to hand the factory an unfair advantage. I let the agents communicate with each other, the way a cross-functional team does — the Planner talking to the Builder, the Builder checking back with the Reviewer, and so on, across rounds. If real teams get their edge from communication, maybe a factory could too.
 
 Both sounded good on paper. That's exactly why I wanted to measure them rather than just assert them.
