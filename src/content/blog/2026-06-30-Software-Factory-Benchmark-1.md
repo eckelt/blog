@@ -27,7 +27,7 @@ In short: PO, Dev, Code Review, QA — just as an agent workflow.
 
 ```mermaid
 flowchart LR
-    Planner --> Builder --> Reviewer --> Validator
+    PO --> Dev --> Reviewer[Code Reviewer] --> QA
 ```
 
 I take a factory apart in detail — the role configs, why the review step earns its place, and the order I run things in — in a separate post: [Anatomy of a Factory](/blog/2026-07-01-software-factory-anatomy).
