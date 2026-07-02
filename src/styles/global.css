@@ -151,11 +151,11 @@ a {
 .zone-bar {
   color: var(--diagram-accent, var(--accent));
   margin: 0 0 1.25rem;
-  padding: 0 8%;
+  text-align: center;
 }
 .zone-bar svg {
-  display: block;
-  width: 100%;
+  display: inline-block;
+  max-width: 100%;
   height: auto;
   font-family: var(--font-body);
 }
