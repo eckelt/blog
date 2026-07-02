@@ -39,7 +39,7 @@ Und wenn auch der letzte Agent fertig ist, geht es in meiner Factory zurück zum
 
 ```mermaid
 flowchart LR
-    Planner --> Builder --> Reviewer --> Validator
+    PO --> Dev --> Code Reviewer --> QA
 ```
 
 ## Die Hypothese
