@@ -61,4 +61,4 @@ What I've described is a single pass: requirements in, working software out. Fro
 
 Most of these turn the factory from a fixed pipeline into something that gets a little better each cycle. I haven't built them properly yet — so, as usual, a note to future me.
 
-That's the factory in broad strokes: PO, Dev, Code Review, QA, then a human gate. The finer details — how many review loops you allow, whether the Validator runs before or after cleanup, how much context each role carries — you add to taste and experience. Those knobs are exactly what I've been [benchmarking in the rest of this series](/blog/2026-06-30-software-factory-benchmark-1-en).
+That's the factory in broad strokes: PO, Dev, Code Review, QA, then a human gate. The finer details — how many review loops you allow, whether the Validator runs before or after cleanup, how much context each role carries — you add to taste and experience. Those knobs are exactly what I've been [benchmarking in the rest of this series](/blog/2026-06-30-software-factory-benchmark-1).

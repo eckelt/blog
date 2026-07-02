@@ -13,7 +13,7 @@ so there are no final numbers here on purpose. Fill the TODO blocks as the run
 produces data. Placeholder pubDate.
 -->
 
-[The first benchmark](/blog/2026-06-30-software-factory-benchmark-1-en) ended with a confession: a Kanban board is the wrong task for proving a factory's worth. It's too small, too well-known, and it rewards pattern reproduction. What it barely tests is what's actually hard in real codebases:
+[The first benchmark](/blog/2026-06-30-software-factory-benchmark-1) ended with a confession: a Kanban board is the wrong task for proving a factory's worth. It's too small, too well-known, and it rewards pattern reproduction. What it barely tests is what's actually hard in real codebases:
 
 - understanding existing architecture
 - respecting legacy code

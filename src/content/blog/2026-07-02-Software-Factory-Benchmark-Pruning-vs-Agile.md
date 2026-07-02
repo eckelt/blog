@@ -6,7 +6,7 @@ lang: "en"
 tags: ["AI", "Software Factory", "Hackers&Wizards"]
 ---
 
-In [the first benchmark](/blog/2026-06-30-software-factory-benchmark-1-en) I pulled two variations out of the main story to keep it readable. The spine there was Vibe → Research→Plan→Implement → Factory. On top of the plain factory I had tried two ideas that were supposed to make it clearly better. They didn't behave the way I expected, and they were interesting enough that they earned their own post instead of crowding the first one.
+In [the first benchmark](/blog/2026-06-30-software-factory-benchmark-1) I pulled two variations out of the main story to keep it readable. The spine there was Vibe → Research→Plan→Implement → Factory. On top of the plain factory I had tried two ideas that were supposed to make it clearly better. They didn't behave the way I expected, and they were interesting enough that they earned their own post instead of crowding the first one.
 
 Same setup as before, in short: one spec describing a Trello-style Kanban board, held constant across all experiments. Two rounds — the first greenfield API only (R1), the second UI only (R2). A circuit breaker capped runaway cost. If you want the full context, read part 1 first; this post assumes it.
 
