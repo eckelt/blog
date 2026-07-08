@@ -10,12 +10,12 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, pubDate, updatedDate, tags } = post.data;
 
-// Maps freeform post tags onto the shared categorical badge palette from
-// tokens.css, kept consistent with the category chips on nils.ecke.lt.
+// Maps freeform post tags onto the categorical badge palette from tokens.css
+// (H&W ramps: cloud=teal/brand, ai=green/autonomous, arch=purple/secondary).
 const TAG_BADGE: Record<string, "cloud" | "ai" | "lang" | "arch" | "lead" | "ux"> = {
   AI: "ai",
   "Software Factory": "arch",
-  "Hackers&Wizards": "ai",
+  "Hackers&Wizards": "cloud",
 };
 const badgeFor = (tag: string) => TAG_BADGE[tag] ?? "cloud";
 // Mermaid diagrams pick up this post's category color via --diagram-accent.
@@ -71,13 +71,14 @@ const primaryBadge = tags.length > 0 ? badgeFor(tags[0]) : "cloud";
   <style>
     .back {
       display: inline-block;
-      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--muted);
       margin: 2.5rem 0 2rem;
-      transition: color 0.2s;
+      transition: color 0.12s;
     }
     .back:hover {
       color: var(--accent);
@@ -88,7 +89,8 @@ const primaryBadge = tags.length > 0 ? badgeFor(tags[0]) : "cloud";
       border-bottom: 1px solid var(--rule);
     }
     .post-meta {
-      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--muted);
@@ -96,11 +98,11 @@ const primaryBadge = tags.length > 0 ? badgeFor(tags[0]) : "cloud";
     }
     h1 {
       font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: clamp(2rem, 6vw, 3rem);
-      line-height: 1.05;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4.2vw, 2.1rem);
+      line-height: 1.12;
       letter-spacing: -0.03em;
-      color: var(--text);
+      color: var(--text-strong);
     }
     .tags {
       list-style: none;
@@ -111,7 +113,8 @@ const primaryBadge = tags.length > 0 ? badgeFor(tags[0]) : "cloud";
       padding: 0;
     }
     .tags li {
-      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
       font-weight: 500;
       letter-spacing: 0.04em;
       padding: 0.2rem 0.6rem;

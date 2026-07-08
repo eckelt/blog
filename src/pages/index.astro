@@ -8,8 +8,8 @@ const posts = await getPublishedPosts();
 
 <BaseLayout>
   <section class="intro">
-    <p class="section-label">Blog</p>
-    <h1>Gedanken zu Agentic Product Development, Engineering&nbsp;Transformation und Cloud.</h1>
+    <p class="section-label">Inside the Factory</p>
+    <h1>Agents Build. Gates Decide. Notes From the Line.</h1>
   </section>
 
   <ul class="post-list">
@@ -43,11 +43,11 @@ const posts = await getPublishedPosts();
     }
     .intro h1 {
       font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: clamp(1.9rem, 5.5vw, 2.8rem);
-      line-height: 1.1;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4.2vw, 2.1rem);
+      line-height: 1.12;
       letter-spacing: -0.03em;
-      color: var(--text);
+      color: var(--text-strong);
     }
     .post-list {
       list-style: none;
@@ -66,7 +66,8 @@ const posts = await getPublishedPosts();
       color: inherit;
     }
     .post-date {
-      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--muted);
@@ -75,11 +76,11 @@ const posts = await getPublishedPosts();
     .post-body h2 {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 1.35rem;
-      line-height: 1.2;
+      font-size: 1.1rem;
+      line-height: 1.25;
       letter-spacing: -0.02em;
-      color: var(--text);
-      transition: color 0.2s;
+      color: var(--text-strong);
+      transition: color 0.12s;
     }
     .post-body p {
       margin-top: 0.4rem;

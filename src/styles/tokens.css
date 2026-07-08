@@ -1,107 +1,91 @@
 /* =============================================================
-   ecke.lt — Design Tokens
+   Hackers & Wizards — Design Tokens (blog preview)
    -------------------------------------------------------------
-   Single source of truth for the shared visual language across
-   nils.ecke.lt (profile), book.ecke.lt (booking) and
-   blog.ecke.lt (this blog).
+   H&W brand skin for the blog, derived from the H&W design
+   system (see ~/.claude/skills/hackers-wizards-design). Keeps
+   the same semantic variable names as the ecke.lt tokens so all
+   components and the Mermaid theming work unchanged.
 
-   Framework-free, dependency-free. Drop this file plus the two
-   woff2 fonts into any of the sites and the brand is consistent.
-   Palette: warm stone (light) + Monokai Pro accents (dark).
+   Dual scheme: light is the explanatory voice, dark the
+   terminal / "lights off" voice (via prefers-color-scheme).
    ============================================================= */
 
-/* ── Fonts (self-hosted) ──────────────────────────────────── */
-@font-face {
-  font-family: "Bricolage Grotesque";
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url("/fonts/bricolage-grotesque.woff2") format("woff2");
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
-    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "DM Sans";
-  font-style: normal;
-  font-weight: 400 500;
-  font-display: swap;
-  src: url("/fonts/dm-sans.woff2") format("woff2");
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
-    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+/* ── Fonts (Google Fonts; swap for self-hosted files later) ── */
+@import url("https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
 
 /* ── Tokens ───────────────────────────────────────────────── */
 :root {
-  /* type */
-  --font-heading: "Bricolage Grotesque", sans-serif;
-  --font-body: "DM Sans", sans-serif;
+  /* type — display mono, neutral grotesque, terminal mono */
+  --font-heading: "Martian Mono", ui-monospace, "Cascadia Mono", monospace;
+  --font-body: "Hanken Grotesk", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* layout */
-  --max: 720px;
+  --max: 760px;
 
   /* surfaces & text (light) */
-  --bg: #fafaf9;
-  --surface: #fff;
-  --text: #2c292d;
-  --muted: #736e73;
-  --rule: #e5e5e5;
-  --border: #e5e5e5;
+  --bg: #ffffff;
+  --surface: #f6f8f9;
+  --text: #33424c;
+  --text-strong: #0a1117;
+  --muted: #5a6a75;
+  --rule: #e2e8ec;
+  --border: #e2e8ec;
 
   /* brand */
-  --accent: #006e8a;
-  --accent-hover: #005570;
-  --on-accent: #fff;
-  --danger: #b01040;
+  --accent: #1a7285;
+  --accent-hover: #146273;
+  --on-accent: #ffffff;
+  --secondary: #9333ea;
+  --danger: #d9534f;
 
   /* aliases kept for the booking page's variable names */
   --primary: var(--accent);
   --primary-hover: var(--accent-hover);
   --on-primary: var(--on-accent);
 
-  /* categorical accents (Monokai Pro family) */
-  --badge-cloud: #006e8a;
-  --badge-cloud-bg: rgba(0, 110, 138, 0.1);
-  --badge-ai: #4a7a00;
-  --badge-ai-bg: rgba(74, 122, 0, 0.1);
-  --badge-lang: #b05200;
-  --badge-lang-bg: rgba(176, 82, 0, 0.1);
-  --badge-arch: #5a3d9c;
-  --badge-arch-bg: rgba(90, 61, 156, 0.1);
-  --badge-lead: #7a5a00;
-  --badge-lead-bg: rgba(122, 90, 0, 0.1);
-  --badge-ux: #b01040;
-  --badge-ux-bg: rgba(176, 16, 64, 0.1);
+  /* categorical accents (H&W brand + status ramps) */
+  --badge-cloud: #1a7285;
+  --badge-cloud-bg: rgba(26, 114, 133, 0.1);
+  --badge-ai: #2fa060;
+  --badge-ai-bg: rgba(47, 160, 96, 0.1);
+  --badge-lang: #d9982e;
+  --badge-lang-bg: rgba(217, 152, 46, 0.12);
+  --badge-arch: #9333ea;
+  --badge-arch-bg: rgba(147, 51, 234, 0.09);
+  --badge-lead: #5a6a75;
+  --badge-lead-bg: rgba(90, 106, 117, 0.1);
+  --badge-ux: #d9534f;
+  --badge-ux-bg: rgba(217, 83, 79, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #19181a;
-    --surface: #2d2a2e;
-    --text: #fcfcfa;
-    --muted: #848085;
-    --rule: #403e41;
-    --border: #403e41;
+    --bg: #0a1117;
+    --surface: #060a0f; /* terminal black — code panels get the console look */
+    --text: #c4d0d8;
+    --text-strong: #ffffff;
+    --muted: #7e8e99;
+    --rule: #1e2a35;
+    --border: #1e2a35;
 
-    --accent: #78dce8;
-    --accent-hover: #60cfe2;
-    --on-accent: #19181a;
-    --danger: #ff6188;
+    --accent: #50c0d0;
+    --accent-hover: #8fd9e3;
+    --on-accent: #0a1117;
+    --secondary: #a855f0;
+    --danger: #e86a5e;
 
-    --badge-cloud: #78dce8;
-    --badge-cloud-bg: rgba(120, 220, 232, 0.12);
-    --badge-ai: #a9dc76;
-    --badge-ai-bg: rgba(169, 220, 118, 0.12);
-    --badge-lang: #fc9867;
-    --badge-lang-bg: rgba(252, 152, 103, 0.12);
-    --badge-arch: #ab9df2;
-    --badge-arch-bg: rgba(171, 157, 242, 0.12);
-    --badge-lead: #ffd866;
-    --badge-lead-bg: rgba(255, 216, 102, 0.12);
-    --badge-ux: #ff6188;
-    --badge-ux-bg: rgba(255, 97, 136, 0.12);
+    --badge-cloud: #50c0d0;
+    --badge-cloud-bg: rgba(80, 192, 208, 0.12);
+    --badge-ai: #4fc98a;
+    --badge-ai-bg: rgba(79, 201, 138, 0.12);
+    --badge-lang: #f2c879;
+    --badge-lang-bg: rgba(242, 200, 121, 0.12);
+    --badge-arch: #a855f0;
+    --badge-arch-bg: rgba(168, 85, 240, 0.12);
+    --badge-lead: #9aaab4;
+    --badge-lead-bg: rgba(154, 170, 180, 0.12);
+    --badge-ux: #e86a5e;
+    --badge-ux-bg: rgba(232, 106, 94, 0.12);
   }
 }
