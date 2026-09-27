@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 3,
+  "product": "blog",
+  "repository": "eckelt/blog",
+  "declared": {
+    "name": "blog",
+    "summary": "Persönlicher Blog von Nils Eckelt (blog.ecke.lt): statische Astro-Website aus Markdown-Beiträgen mit RSS und Sitemap, ausgeliefert von einem Cloudflare Worker mit Static Assets, manuell deployt.",
+    "managed": "oneshot",
+    "visibility": "public",
+    "docs": [
+      "openspec/project.md",
+      "openspec/specs/posts/spec.md",
+      "openspec/specs/feeds-seo/spec.md",
+      "openspec/specs/shared-design/spec.md",
+      "openspec/specs/deploy/spec.md"
+    ],
+    "containers": [
+      {
+        "id": "site",
+        "kind": "app",
+        "name": "blog.ecke.lt Website",
+        "summary": "Astro-Build (npm run build → ./dist): Übersicht, Beitragsseiten, RSS, Sitemap; Mermaid im Browser. Eigene tokens.css statt ecke-design-system.",
+        "deployment": "Cloudflare Worker 'blog' mit Static Assets (manueller Deploy, kein CI)",
+        "visibility": "public",
+        "interfaces": [
+          {
+            "id": "site",
+            "direction": "provides",
+            "protocol": "HTTPS HTML",
+            "contractRef": "blog:site@1",
+            "summary": "https://blog.ecke.lt/ (Übersicht), /blog/<id>/, /rss.xml, /sitemap-index.xml, /robots.txt, /fonts/*.woff2"
+          },
+          {
+            "id": "profile-site",
+            "direction": "consumes",
+            "protocol": "HTTPS Hyperlink",
+            "contractRef": "nils.ecke.lt:site@1",
+            "summary": "https://nils.ecke.lt, /impressum/, /datenschutz/"
+          },
+          {
+            "id": "booking-page",
+            "direction": "consumes",
+            "protocol": "HTTPS Hyperlink",
+            "contractRef": "booking:booking-page@1",
+            "summary": "https://book.ecke.lt/30min"
+          },
+          {
+            "id": "hosting",
+            "direction": "consumes",
+            "protocol": "Cloudflare Workers Static Assets",
+            "contractRef": "cloudflare-workers:static-assets@1",
+            "summary": "Worker 'blog', assets.directory ./dist, Custom Domain blog.ecke.lt"
+          }
+        ]
+      }
+    ],
+    "contracts": [
+      {
+        "id": "blog:site@1",
+        "producer": "blog",
+        "consumers": [
+          "nils.ecke.lt"
+        ],
+        "version": "1"
+      }
+    ],
+    "externals": [
+      {
+        "id": "cloudflare-workers",
+        "vendor": "Cloudflare",
+        "category": "hosting",
+        "consoleUrl": "https://dash.cloudflare.com",
+        "interfaces": [
+          {
+            "id": "static-assets",
+            "protocol": "Cloudflare Workers Static Assets",
+            "contractRef": "cloudflare-workers:static-assets@1",
+            "consumers": [
+              "blog"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "derived": {
+    "provenance": {
+      "source": "declared",
+      "commit": "c8304618a6c84a595d80744ebb581a10bc3e773e",
+      "at": "2026-09-27T00:00:00Z"
+    },
+    "nodes": [
+      {
+        "id": "blog",
+        "level": "product",
+        "kind": "product",
+        "name": "blog",
+        "summary": "Persönlicher Blog von Nils Eckelt (statische Astro-Website).",
+        "repository": "eckelt/blog",
+        "visibility": "public",
+        "managed": "oneshot",
+        "docs": [
+          "openspec/project.md",
+          "openspec/specs/posts/spec.md",
+          "openspec/specs/feeds-seo/spec.md",
+          "openspec/specs/shared-design/spec.md",
+          "openspec/specs/deploy/spec.md"
+        ],
+        "provenance": {
+          "source": "declared",
+          "commit": "c8304618a6c84a595d80744ebb581a10bc3e773e",
+          "at": "2026-09-27T00:00:00Z"
+        }
+      },
+      {
+        "id": "blog/site",
+        "level": "container",
+        "kind": "app",
+        "name": "blog.ecke.lt Website",
+        "path": "astro.config.mjs",
+        "visibility": "public",
+        "interfaces": [
+          {
+            "id": "site",
+            "direction": "provides",
+            "protocol": "HTTPS HTML",
+            "contractRef": "blog:site@1"
+          },
+          {
+            "id": "profile-site",
+            "direction": "consumes",
+            "protocol": "HTTPS Hyperlink",
+            "contractRef": "nils.ecke.lt:site@1"
+          },
+          {
+            "id": "booking-page",
+            "direction": "consumes",
+            "protocol": "HTTPS Hyperlink",
+            "contractRef": "booking:booking-page@1"
+          },
+          {
+            "id": "hosting",
+            "direction": "consumes",
+            "protocol": "Cloudflare Workers Static Assets",
+            "contractRef": "cloudflare-workers:static-assets@1"
+          }
+        ],
+        "provenance": {
+          "source": "declared",
+          "commit": "c8304618a6c84a595d80744ebb581a10bc3e773e",
+          "at": "2026-09-27T00:00:00Z"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "blog/site=>external/cloudflare-workers:deploys-to",
+        "from": "blog/site",
+        "to": "external/cloudflare-workers",
+        "perspective": "deployment",
+        "kind": "deploys-to",
+        "protocol": "HTTPS",
+        "attributes": {
+          "evidence": "wrangler.jsonc:1-7; landscape:inventory/overlay.yaml:19-34; landscape:landscape.yaml:39 (manuell, kein CI)",
+          "target": "Worker blog, Custom Domain blog.ecke.lt"
+        },
+        "provenance": {
+          "source": "declared",
+          "commit": "c8304618a6c84a595d80744ebb581a10bc3e773e",
+          "at": "2026-09-27T00:00:00Z"
+        }
+      }
+    ],
+    "violations": []
+  }
+}
