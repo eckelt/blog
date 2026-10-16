@@ -1,7 +1,7 @@
 # blog.ecke.lt
 
 Persönlicher Blog von Nils Eckelt — gebaut mit [Astro](https://astro.build),
-gehostet auf **Cloudflare Pages**. Teilt sich die Designsprache mit
+gehostet als **Cloudflare Worker** mit Static Assets. Teilt sich die Designsprache mit
 [nils.ecke.lt](https://nils.ecke.lt) (Profil) und
 [book.ecke.lt](https://book.ecke.lt) (Buchung).
 
@@ -55,23 +55,21 @@ Das Rendering passiert **client-seitig** und liest die Design-Tokens live aus �
 Diagramme nutzen also dieselben Farben/Schriften wie die Seite und schalten
 automatisch zwischen Light/Dark um (siehe `src/scripts/mermaid.ts`). Mermaid
 wird nur auf Seiten geladen, die tatsächlich ein Diagramm enthalten, und ist
-damit auf Cloudflare Pages ohne Build-Browser lauffähig.
+damit ohne Build-Browser lauffähig.
 
-## Deployment (Cloudflare Pages)
+## Deployment (Cloudflare Worker mit Static Assets)
 
-Einmalig einrichten:
+Ausgeliefert wird `blog.ecke.lt` von einem Cloudflare **Worker** namens `blog`,
+der das Build-Verzeichnis `./dist` als Static Assets ausliefert
+(`wrangler.jsonc`). Es gibt kein Pages-Projekt, keine Git-Integration und
+kein CI: Ein `git push` deployt **nicht**.
 
-1. Cloudflare Dashboard → **Workers & Pages → Create → Pages → Connect to Git**
-   → dieses Repo wählen.
-2. Build-Einstellungen:
-   - **Framework preset:** Astro
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-3. **Custom domain** `blog.ecke.lt` zuweisen — da die Zone `ecke.lt` bereits
-   bei Cloudflare liegt (wie `book.ecke.lt`), wird der DNS-Record automatisch
-   gesetzt, HTTPS inklusive.
+Deploy von Hand:
 
-Danach gilt: `git push` → Cloudflare baut und deployed automatisch.
+```sh
+npm run build
+npx wrangler deploy
+```
 
 ## Design Library
 

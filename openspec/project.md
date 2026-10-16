@@ -72,7 +72,6 @@ Das Design-System `ecke-design-system` wird **nicht** genutzt: Farben, Schriften
 
 ## Bekannte Lücken
 
-- **README beschreibt falschen Deploy-Weg (C2 → B2):** Die README beschreibt Cloudflare Pages mit Git-Integration und automatischem Deploy bei `git push`; tatsächlich läuft ein Worker mit Static Assets, und ein Pages-Projekt `blog` gibt es nicht [README.md:60-74; wrangler.jsonc:1-7; landscape:inventory/overlay.yaml:119-127]. Die Korrektur ist Soll und steht nur im Landscape-Backlog (`landscape:backlog.md`, B2) [landscape:backlog.md:9].
 - **Deploy-Befehl nicht im Repo:** `package.json` hat kein Deploy-Skript und `wrangler` ist keine Abhängigkeit [package.json:6-18].
 - **Eigene Kopie der Designsprache:** `tokens.css` nennt sich „Single source of truth“ für nils.ecke.lt, book.ecke.lt und den Blog, und die README bezeichnet sie als kanonische Quelle [src/styles/tokens.css:1-11; README.md:76-94]. Laut Inventar nutzt nils.ecke.lt aber das Stylesheet von ecke-design-system [landscape:inventory/raw/nils.ecke.lt.yaml:58-60]; der Blog bindet es nicht ein [src/styles/global.css:4].
 - **Geplante Beiträge erscheinen erst nach neuem Build:** Ein Beitrag mit `pubDate` in der Zukunft wird erst sichtbar, wenn nach diesem Datum neu gebaut und (manuell) deployt wird [src/utils/posts.ts:10-12].
