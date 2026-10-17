@@ -20,9 +20,17 @@ Das System SHALL als Cloudflare Worker `blog` den Inhalt von `./dist` als Static
 - **WHEN** die Cloudflare-Konfiguration geprüft wird
 - **THEN** gibt es den Worker `blog`, aber kein Pages-Projekt `blog`; die Pages-Anleitung in der README gilt nicht [landscape:inventory/overlay.yaml:22-29; landscape:inventory/overlay.yaml:119-127]
 
-### Requirement: Manueller Deploy
-Das System SHALL nur durch einen manuellen Deploy aktualisiert werden: Es gibt kein CI im Repo und keine Workers Builds [landscape:landscape.yaml:35-39; landscape:inventory/raw/cloudflare.yaml:36; landscape:inventory/raw/cloudflare.yaml:157].
+### Requirement: Deploy per CI
+Das System SHALL bei jedem Push auf `main`, der Quellen, Abhängigkeiten oder die Worker-Konfiguration ändert, in GitHub Actions bauen und mit `wrangler deploy` als Worker `blog` ausliefern und danach prüfen, dass blog.ecke.lt diesen Build zeigt. Fehlen die Secrets `CLOUDFLARE_API_TOKEN` oder `CLOUDFLARE_ACCOUNT_ID`, SHALL der Lauf vor dem Deploy mit einer klaren Meldung abbrechen.
 
-#### Scenario: Push auf main
-- **WHEN** ein Commit auf `main` gepusht wird
-- **THEN** wird nichts gebaut oder deployt [landscape:landscape.yaml:39; landscape:inventory/raw/cloudflare.yaml:36]
+#### Scenario: Push mit geänderter Seite
+- **WHEN** ein Commit auf `main` eine Datei unter `src/` ändert
+- **THEN** baut und deployt der Workflow, und die Live-Prüfung findet das CSS-Asset dieses Builds auf https://blog.ecke.lt/
+
+#### Scenario: Secret fehlt
+- **WHEN** `CLOUDFLARE_API_TOKEN` leer ist
+- **THEN** endet der Lauf rot mit „Secret CLOUDFLARE_API_TOKEN ist leer“, ohne zu deployen
+
+#### Scenario: Nur Doku geändert
+- **WHEN** ein Commit nur `openspec/` oder `README.md` ändert
+- **THEN** läuft kein Deploy
