@@ -11,19 +11,22 @@ const { post } = Astro.props;
 const { title, description, pubDate, updatedDate, tags } = post.data;
 
 // Maps freeform post tags onto the shared categorical badge palette from
-// tokens.css, kept consistent with the category chips on nils.ecke.lt.
+// the design system (ecke-design-system v1), kept consistent with the category chips on nils.ecke.lt.
 const TAG_BADGE: Record<string, "cloud" | "ai" | "lang" | "arch" | "lead" | "ux"> = {
   AI: "ai",
   "Software Factory": "arch",
   "Hackers&Wizards": "ai",
 };
 const badgeFor = (tag: string) => TAG_BADGE[tag] ?? "cloud";
-// Mermaid diagrams pick up this post's category color via --diagram-accent.
+// Diagrams pick up this post's category color via --diagram-accent, set by
+// global.css from html[data-badge] (v1/mermaid.js reads the tokens from <html>).
 const primaryBadge = tags.length > 0 ? badgeFor(tags[0]) : "cloud";
+// Load the design system's Mermaid adapter only on posts with a diagram.
+const hasDiagram = /^\s*(```|~~~)\s*mermaid\b/m.test(post.body ?? "");
 ---
 
-<BaseLayout title={title} description={description} type="article">
-  <article data-badge={primaryBadge}>
+<BaseLayout title={title} description={description} type="article" badge={primaryBadge}>
+  <article>
     <a href="/" class="back">&larr; Alle Beiträge</a>
     <header class="post-header">
       <div class="post-meta">
@@ -50,23 +53,11 @@ const primaryBadge = tags.length > 0 ? badgeFor(tags[0]) : "cloud";
     </div>
   </article>
 
-  <script>
-    // Load + render Mermaid only on posts that actually contain a diagram.
-    // Waits for the "load" event so the external stylesheet is guaranteed to
-    // be applied before Mermaid reads our CSS custom properties — otherwise
-    // getComputedStyle can race the stylesheet fetch and Mermaid silently
-    // falls back to its own default (purple) theme instead of ours.
-    function bootMermaid() {
-      if (document.querySelector("pre.mermaid")) {
-        import("../scripts/mermaid").then((m) => m.default());
-      }
-    }
-    if (document.readyState === "complete") {
-      bootMermaid();
-    } else {
-      window.addEventListener("load", bootMermaid);
-    }
-  </script>
+  {
+    hasDiagram && (
+      <script is:inline src="https://ecke-design-system.pages.dev/v1/mermaid.js" />
+    )
+  }
 
   <style>
     .back {
@@ -140,30 +131,6 @@ const primaryBadge = tags.length > 0 ? badgeFor(tags[0]) : "cloud";
     .tag-ux {
       color: var(--badge-ux);
       background: var(--badge-ux-bg);
-    }
-    article[data-badge="cloud"] {
-      --diagram-accent: var(--badge-cloud);
-      --diagram-accent-bg: var(--badge-cloud-bg);
-    }
-    article[data-badge="ai"] {
-      --diagram-accent: var(--badge-ai);
-      --diagram-accent-bg: var(--badge-ai-bg);
-    }
-    article[data-badge="lang"] {
-      --diagram-accent: var(--badge-lang);
-      --diagram-accent-bg: var(--badge-lang-bg);
-    }
-    article[data-badge="arch"] {
-      --diagram-accent: var(--badge-arch);
-      --diagram-accent-bg: var(--badge-arch-bg);
-    }
-    article[data-badge="lead"] {
-      --diagram-accent: var(--badge-lead);
-      --diagram-accent-bg: var(--badge-lead-bg);
-    }
-    article[data-badge="ux"] {
-      --diagram-accent: var(--badge-ux);
-      --diagram-accent-bg: var(--badge-ux-bg);
     }
   </style>
 </BaseLayout>

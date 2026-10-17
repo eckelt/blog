@@ -53,9 +53,11 @@ flowchart LR
 
 Das Rendering passiert **client-seitig** und liest die Design-Tokens live aus —
 Diagramme nutzen also dieselben Farben/Schriften wie die Seite und schalten
-automatisch zwischen Light/Dark um (siehe `src/scripts/mermaid.ts`). Mermaid
-wird nur auf Seiten geladen, die tatsächlich ein Diagramm enthalten, und ist
-damit ohne Build-Browser lauffähig.
+automatisch zwischen Light/Dark um. Gerendert wird mit `v1/mermaid.js` des
+Design-Systems (`https://ecke-design-system.pages.dev/v1/mermaid.js`); es wird
+nur auf Beiträgen geladen, die tatsächlich ein Diagramm enthalten. Die
+Akzentfarbe kommt vom ersten Tag des Beitrags (`--diagram-accent` an `<html>`,
+siehe `src/styles/global.css`).
 
 ## Deployment (Cloudflare Worker mit Static Assets)
 
@@ -71,36 +73,23 @@ npm run build
 npx wrangler deploy
 ```
 
-## Design Library
+## Design-System
 
-Die gemeinsame Designsprache liegt **framework-frei** in
-[`src/styles/tokens.css`](src/styles/tokens.css): alle CSS-Custom-Properties
-(Farben für Light/Dark, Typo, Layout, Badge-Palette) plus die `@font-face`-
-Deklarationen. Die beiden Fonts liegen in `public/fonts/`.
-
-Das ist die **kanonische Quelle der Designsprache** für alle drei Seiten. Sie
-ist bewusst portierbar gehalten:
-
-- **Profil (statisches HTML auf Fastmail):** `tokens.css` einbinden bzw. die
-  Variablen daraus übernehmen.
-- **Booking (CSS-in-Worker):** denselben `:root`-Block verwenden.
-
-> Bewusst **keine** publizierte npm-Package: Profil hat keinen Build-Schritt
-> und Booking rendert CSS als String im Worker — eine Paket-Abhängigkeit dort
-> einzuziehen wäre unverhältnismäßig. Sollten beide später einen Build-Schritt
-> bekommen, lässt sich `tokens.css` + `public/fonts/` ohne Änderung in ein
-> Paket `@eckelt/ui` heben, das alle drei konsumieren.
+Tokens, Schriften und Basis-Stile kommen aus dem gemeinsamen
+ecke.lt Design-System: `BaseHead.astro` bindet
+`https://ecke-design-system.pages.dev/v1/styles.css` ein. Der Blog hat keine
+eigene Token-Kopie und keine eigenen Fonts mehr; `src/styles/global.css`
+enthält nur Blog-Layout und die Stellen, an denen der Blog bewusst von den
+Basis-Stilen des Design-Systems abweicht.
 
 ## Struktur
 
 ```
 public/
-  fonts/            geteilte woff2-Fonts (Bricolage Grotesque, DM Sans)
   favicon-32.png, apple-touch-icon.png, ne.svg
 src/
   styles/
-    tokens.css      ← Design Library (kanonisch, framework-frei)
-    global.css      Basis-Elemente + Prose, baut auf tokens.css
+    global.css      Blog-Layout + Prose, baut auf dem Design-System (v1/styles.css)
   components/        BaseHead, Header, Footer, FormattedDate
   layouts/           BaseLayout, PostLayout
   content/blog/      die Beiträge (Markdown)

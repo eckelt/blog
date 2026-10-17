@@ -7,18 +7,15 @@ Eigene Kopie der ecke.lt-Designsprache (Tokens, Fonts) sowie Navigation und Foot
 ## Requirements
 
 ### Requirement: Design-Tokens
-Das System SHALL Farben, Schriften, Layout-Werte und die Badge-Palette als CSS-Custom-Properties aus `src/styles/tokens.css` bereitstellen, mit eigener Palette für `prefers-color-scheme: dark` [src/styles/tokens.css:37-107; src/styles/global.css:4; src/layouts/BaseLayout.astro:2].
+Das System SHALL Farben, Schriften, Layout-Werte und die Badge-Palette aus dem ecke.lt Design-System beziehen, indem es `https://ecke-design-system.pages.dev/v1/styles.css` (`ecke-design-system:styles@1`) einbindet; eine eigene Kopie der Tokens SHALL es nicht mehr geben. Das helle und dunkle Farbschema kommen aus dem Design-System.
 
 #### Scenario: Dunkles Farbschema
 - **WHEN** der Browser `prefers-color-scheme: dark` meldet
-- **THEN** gelten die Werte aus dem Dark-Block, einschließlich der Badge-Farben [src/styles/tokens.css:80-105]
+- **THEN** gelten die Dark-Werte aus `/v1/tokens/colors.css`, einschließlich der Badge-Farben
 
-### Requirement: Selbst gehostete Fonts
-Das System SHALL die Schriften Bricolage Grotesque und DM Sans aus `/fonts/` des Blogs selbst laden [src/styles/tokens.css:13-35; public/fonts/bricolage-grotesque.woff2; public/fonts/dm-sans.woff2].
-
-#### Scenario: Font-Laden
-- **WHEN** eine Seite gerendert wird
-- **THEN** lädt der Browser `/fonts/bricolage-grotesque.woff2` und `/fonts/dm-sans.woff2` von blog.ecke.lt [src/styles/tokens.css:19; src/styles/tokens.css:30]
+#### Scenario: Keine eigene Token-Kopie
+- **WHEN** der Blog gebaut wird
+- **THEN** enthält das Ergebnis weder `tokens.css` noch eigene Definitionen der Design-System-Tokens
 
 ### Requirement: Navigation und Footer
 Das System SHALL im Kopf Links auf „Blog“ (`/`), „Profil“ (`https://nils.ecke.lt`) und „Termin buchen“ (`https://book.ecke.lt/30min`) zeigen und im Footer auf Impressum und Datenschutz von nils.ecke.lt verlinken [src/consts.ts:5-11; src/components/Header.astro:9-20; src/components/Footer.astro:21-25].

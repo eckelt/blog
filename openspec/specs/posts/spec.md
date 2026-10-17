@@ -39,12 +39,12 @@ Das System SHALL jeden veröffentlichten Beitrag unter `/blog/<id>/` rendern, wo
 - **THEN** bekommt jeder Tag eine Badge-Farbe aus einer festen Zuordnung (`AI`, `Hackers&Wizards` → ai, `Software Factory` → arch, sonst cloud), und der erste Tag bestimmt die Akzentfarbe der Diagramme [src/layouts/PostLayout.astro:13-22; src/layouts/PostLayout.astro:26]
 
 ### Requirement: Markdown-Erweiterungen
-Das System SHALL Code-Blöcke mit Sprache `mermaid` als `<pre class="mermaid">` ausgeben und Tabellen in ein `div.table-scroll` einpacken [astro.config.mjs:11-14; src/plugins/remark-mermaid.mjs:14-24; src/plugins/rehype-table-scroll.mjs:3-15].
+Das System SHALL Code-Blöcke mit Sprache `mermaid` als `<pre class="mermaid">` ausgeben und Tabellen in ein `div.table-scroll` einpacken. Diagramme SHALL der Mermaid-Adapter des Design-Systems (`https://ecke-design-system.pages.dev/v1/mermaid.js`, `ecke-design-system:mermaid@1`) rendern; die Akzentfarbe des Beitrags SHALL der Blog als `--diagram-accent` setzen.
 
 #### Scenario: Seite mit Diagramm
 - **WHEN** eine Beitragsseite ein `pre.mermaid` enthält
-- **THEN** lädt der Browser nach dem `load`-Event das Mermaid-Modul, rendert mit den aktuellen Design-Tokens und rendert beim Wechsel zwischen hellem und dunklem Farbschema neu [src/layouts/PostLayout.astro:53-69; src/scripts/mermaid.ts:11-58; src/scripts/mermaid.ts:65-91]
+- **THEN** lädt der Browser `/v1/mermaid.js` des Design-Systems, das mit den Design-Tokens und der Akzentfarbe des ersten Tags rendert und beim Wechsel zwischen hellem und dunklem Farbschema neu rendert
 
 #### Scenario: Seite ohne Diagramm
 - **WHEN** eine Seite kein `pre.mermaid` enthält
-- **THEN** wird Mermaid nicht geladen [src/layouts/PostLayout.astro:59-63; src/scripts/mermaid.ts:66-69]
+- **THEN** wird kein Mermaid-Skript geladen

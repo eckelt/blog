@@ -13,7 +13,6 @@
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.2",
     "astro": "^5.13.0",
-    "mermaid": "^11.16.0",
     "unist-util-visit": "^5.1.0"
   }
 }

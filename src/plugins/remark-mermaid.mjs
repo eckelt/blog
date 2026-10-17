@@ -9,7 +9,7 @@ const escapeHtml = (str) =>
 /**
  * Turns ```mermaid fenced code blocks into raw <pre class="mermaid"> nodes,
  * before Shiki touches them, so the diagram source survives intact for the
- * client-side renderer. See src/scripts/mermaid.ts for the rendering + theming.
+ * client-side renderer. The design system's v1/mermaid.js does the rendering + theming.
  */
 export default function remarkMermaid() {
   return (tree) => {

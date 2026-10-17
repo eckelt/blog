@@ -10,6 +10,7 @@ interface Props {
   description?: string;
   image?: string;
   type?: "website" | "article";
+  badge?: string;
 }
 
 const {
@@ -17,11 +18,12 @@ const {
   description = SITE_DESCRIPTION,
   image,
   type = "website",
+  badge,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang="de" data-badge={badge}>
   <head>
     <BaseHead title={title} description={description} image={image} type={type} />
   </head>

@@ -21,9 +21,10 @@
       "name": "blog.ecke.lt Website",
       "kind": "app",
       "technology": "Astro, Cloudflare Workers Static Assets",
-      "summary": "Statische Website aus Markdown-Beiträgen mit RSS, Sitemap und Mermaid; eigene Tokens.",
+      "summary": "Statische Website aus Markdown-Beiträgen mit RSS und Sitemap; Gestaltung und Diagramme aus dem ecke.lt Design-System.",
       "path": "src/",
       "deployment": "Cloudflare Worker blog mit Static Assets, Custom Domain blog.ecke.lt; Deploy von Hand",
+      "url": "https://blog.ecke.lt/",
       "visibility": "public",
       "specs": [
         "posts",
@@ -64,6 +65,22 @@
           "evidence": [
             "src/consts.ts:10"
           ]
+        },
+        {
+          "id": "design-system-styles",
+          "direction": "consumes",
+          "contractRef": "ecke-design-system:styles@1",
+          "protocol": "HTTPS CSS",
+          "relation": "imports",
+          "summary": "bindet /v1/styles.css von ecke-design-system ein (Tokens, Schriften, Grundstile) statt eigener Kopie"
+        },
+        {
+          "id": "design-system-mermaid",
+          "direction": "consumes",
+          "contractRef": "ecke-design-system:mermaid@1",
+          "protocol": "HTTPS JavaScript",
+          "relation": "imports",
+          "summary": "rendert Diagramme mit /v1/mermaid.js statt eigenem Skript"
         },
         {
           "id": "hosting",
