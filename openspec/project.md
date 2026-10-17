@@ -4,7 +4,7 @@
 - **Repo:** git@github.com:eckelt/blog.git, Branch `main` [landscape:inventory/raw/blog.yaml:2-4]
 - **Stand der Aussagen:** Commit `c8304618a6c84a595d80744ebb581a10bc3e773e` [landscape:inventory/raw/blog.yaml:3], aufgenommen am 2026-09-27
 - **managed:** `oneshot` (einmalige Ist-Aufnahme von Hand, kein automatischer Abgleich)
-- **Architektur-Manifest:** `twin.json` (Schema: ecke-lt-landscape `schema/twin.schema.json`, v3)
+- **Architektur-Manifest:** `twin.json` (Schema: ecke-lt-landscape `schema/manifest.v4.schema.json`, v4)
 
 Alle Fundstellen `[datei:zeile]` beziehen sich auf den genannten Commit und sind relativ zum Repo-Root. `[landscape:…]` verweist auf das Repo ecke-lt-landscape. Konventionen: `landscape:CONVENTIONS.md`.
 
