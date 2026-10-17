@@ -63,15 +63,13 @@ siehe `src/styles/global.css`).
 
 Ausgeliefert wird `blog.ecke.lt` von einem Cloudflare **Worker** namens `blog`,
 der das Build-Verzeichnis `./dist` als Static Assets ausliefert
-(`wrangler.jsonc`). Es gibt kein Pages-Projekt, keine Git-Integration und
-kein CI: Ein `git push` deployt **nicht**.
+(`wrangler.jsonc`). Es gibt kein Pages-Projekt.
 
-Deploy von Hand:
-
-```sh
-npm run build
-npx wrangler deploy
-```
+Deployt wird per CI: `.github/workflows/deploy.yml` baut bei jedem Push auf
+`main`, der Quellen oder Konfiguration ändert, führt `wrangler deploy` aus und
+prüft danach, dass blog.ecke.lt diesen Build zeigt. Von Hand anstoßen geht über
+„Run workflow“ (`gh workflow run deploy.yml`). Secrets im Repo:
+`CLOUDFLARE_API_TOKEN` (Workers Scripts: Edit) und `CLOUDFLARE_ACCOUNT_ID`.
 
 ## Design-System
 

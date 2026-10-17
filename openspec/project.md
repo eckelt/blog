@@ -21,7 +21,7 @@ Alle Fundstellen `[datei:zeile]` beziehen sich auf den genannten Commit und sind
 
 blog.ecke.lt ist der persönliche Blog von Nils Eckelt mit Notizen zu Agentic Product Development, Engineering Transformation und Cloud [README.md:1-3; src/consts.ts:1-4].
 Beiträge werden als Markdown-Dateien im Repo geschrieben und mit Astro zu einer rein statischen Website gebaut, inklusive Übersicht, Beitragsseiten, RSS-Feed und Sitemap [README.md:19-39; package.json:6-10; astro.config.mjs:8-15].
-Ausgeliefert wird die fertige Website von einem Cloudflare Worker mit Static Assets unter blog.ecke.lt, der von Hand deployt wird [wrangler.jsonc:1-7; landscape:inventory/overlay.yaml:19-34; landscape:landscape.yaml:35-39].
+Ausgeliefert wird die fertige Website von einem Cloudflare Worker mit Static Assets unter blog.ecke.lt, den der Workflow `.github/workflows/deploy.yml` bei jedem Push auf `main` deployt [wrangler.jsonc:1-7; .github/workflows/deploy.yml].
 
 ## Schnittstellen
 
@@ -50,7 +50,7 @@ Bekannter Nutzer: nils.ecke.lt verlinkt auf blog.ecke.lt [landscape:inventory/ra
 
 1. **Schreiben:** Beiträge liegen als Markdown mit Frontmatter (`title`, `description`, `pubDate`, `updatedDate`, `tags`, `draft`) unter `src/content/blog/` [README.md:19-39; src/content.config.ts:4-14].
 2. **Build:** `npm run build` (`astro build`) erzeugt statisches HTML, RSS und Sitemap in `./dist` [package.json:8; README.md:13; astro.config.mjs:10]. Nur Beiträge ohne `draft` und mit `pubDate` in der Vergangenheit werden gebaut [src/utils/posts.ts:14-20].
-3. **Deploy:** `wrangler.jsonc` beschreibt den Worker `blog`, der das Verzeichnis `./dist` als Static Assets ausliefert [wrangler.jsonc:1-7]. Es gibt kein CI und keine Workers Builds; deployt wird manuell [landscape:landscape.yaml:39; landscape:inventory/raw/cloudflare.yaml:32-39]. Der genaue Befehl ist im Repo nicht dokumentiert (siehe Offene Fragen).
+3. **Deploy:** `wrangler.jsonc` beschreibt den Worker `blog`, der das Verzeichnis `./dist` als Static Assets ausliefert [wrangler.jsonc:1-7]. Deployt wird per GitHub Actions mit `wrangler deploy` und anschließender Live-Prüfung (Change `deploy-per-ci`, 2026-10-17) [.github/workflows/deploy.yml].
 4. **Seitenabruf:** Der Browser lädt HTML, CSS, Fonts und Bilder vom Worker `blog` über die Custom Domain blog.ecke.lt [landscape:inventory/overlay.yaml:27-34]. Das Design-System-Stylesheet kommt von ecke-design-system.pages.dev; `v1/mermaid.js` wird nur auf Beitragsseiten mit Diagramm nachgeladen und rendert im Browser [src/components/BaseHead.astro:20; src/layouts/PostLayout.astro:56-60; README.md:54-60].
 5. **Weiterleitungen:** Navigation und Footer verlinken auf nils.ecke.lt (Profil, Impressum, Datenschutz) und book.ecke.lt/30min; der Blog sendet selbst keine Daten [src/consts.ts:7-11; src/components/Footer.astro:21-25].
 
@@ -73,11 +73,10 @@ Bekannter Nutzer: nils.ecke.lt verlinkt auf blog.ecke.lt [landscape:inventory/ra
 ## Bekannte Lücken
 
 - **Deploy-Befehl nicht im Repo:** `package.json` hat kein Deploy-Skript und `wrangler` ist keine Abhängigkeit [package.json:6-18].
-- **Geplante Beiträge erscheinen erst nach neuem Build:** Ein Beitrag mit `pubDate` in der Zukunft wird erst sichtbar, wenn nach diesem Datum neu gebaut und (manuell) deployt wird [src/utils/posts.ts:10-12].
+- **Geplante Beiträge erscheinen erst nach neuem Build:** Ein Beitrag mit `pubDate` in der Zukunft wird erst sichtbar, wenn nach diesem Datum neu gebaut und deployt wird (Push oder „Run workflow“) [src/utils/posts.ts:10-12].
 
 ## Offene Fragen
 
-- Mit welchem Befehl wird deployt (vermutlich `wrangler deploy` nach `npm run build`), von welchem Rechner und mit welcher Wrangler-Version?
 - Ist blog.ecke.lt zusätzlich über `workers.dev` erreichbar, und ist das gewollt? Das Inventar meldet `workers_dev: true`.
 - Deckt die Datenschutzerklärung auf nils.ecke.lt blog.ecke.lt und das Hosting auf Cloudflare Workers ab?
 - `v1/mermaid.js` lädt das Mermaid-Modul zur Laufzeit von cdn.jsdelivr.net; das ist ein Ladepfad des Design-Systems, nicht des Blogs.
