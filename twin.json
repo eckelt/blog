@@ -93,6 +93,9 @@
             "wrangler.jsonc:1-7"
           ]
         }
+      ],
+      "adrs": [
+        "docs/adr/2026-09-01-alle-apps-nutzen-design-system.md"
       ]
     },
     {
@@ -129,6 +132,9 @@
             ".github/workflows/deploy.yml:45-48"
           ]
         }
+      ],
+      "adrs": [
+        "docs/adr/2026-10-17-deploy-per-ci.md"
       ]
     }
   ]
