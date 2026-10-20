@@ -25,4 +25,4 @@ Das System SHALL auf jeder Seite Titel, Beschreibung, Canonical-URL, Open-Graph-
 
 #### Scenario: Beitragsseite
 - **WHEN** eine Beitragsseite gerendert wird
-- **THEN** lautet der Titel „<Beitragstitel> · Blog · Nils Eckelt“ und `og:type` ist `article` [src/components/BaseHead.astro:14; src/layouts/PostLayout.astro:25; src/consts.ts:1]
+- **THEN** lautet der Titel „<Beitragstitel> · Blog · Nils Eckelt“ und `og:type` ist `article` [src/components/BaseHead.astro:14; src/layouts/PostLayout.astro:28; src/consts.ts:1]
