@@ -1,0 +1,5 @@
+- [ ] 1.1 `BaseHead.astro` (preconnect + Stylesheet), `PostLayout.astro` (Mermaid), Kommentar in `global.css` auf `design.ecke.lt` umstellen
+- [ ] 1.2 `README.md`, `openspec/project.md`, Specs `posts` und `shared-design` nachziehen; ADR-Datei nach `docs/adr/`, Folge-Zeile in `2026-09-01-…`
+- [ ] 1.3 Soll-`twin.json` ins Root; `validate-schemas` grün; `twin-diff` ohne neue Drift
+- [ ] 1.4 Vor Push: `https://design.ecke.lt/v1/styles.css` und `/v1/mermaid.js` antworten mit 200 und CORS-Header
+- [ ] 1.5 Deploy (Befehl dem Inhaber nennen, falls kein CI) und Sichtprüfung blog.ecke.lt (Stylesheet und Mermaid-Beitrag laden von `design.ecke.lt`)
