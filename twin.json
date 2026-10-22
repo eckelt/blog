@@ -33,8 +33,8 @@
         "deploy"
       ],
       "evidence": [
-        "src/styles/global.css:4",
-        "src/layouts/PostLayout.astro:60-61"
+        "src/components/BaseHead.astro:20",
+        "src/layouts/PostLayout.astro:57-59"
       ],
       "interfaces": [
         {
