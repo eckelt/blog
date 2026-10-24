@@ -7,6 +7,7 @@
     "repository": "eckelt/blog",
     "managed": "oneshot",
     "visibility": "public",
+    "url": "https://blog.ecke.lt/",
     "asOf": "a92b8cf12e8aa6e27ffee339d94b87b5bcde0c6c",
     "specs": [
       "posts",
