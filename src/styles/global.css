@@ -1,7 +1,7 @@
 /* =============================================================
    Blog-specific base + layout styles. Tokens, fonts and generic
    base styles come from the ecke.lt design system
-   (https://ecke-design-system.pages.dev/v1/styles.css, linked in
+   (https://design.ecke.lt/v1/styles.css, linked in
    BaseHead.astro). Where the design system sets other base values
    than the blog historically used, the blog values are kept here.
    ============================================================= */

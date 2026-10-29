@@ -7,7 +7,7 @@ Eigene Kopie der ecke.lt-Designsprache (Tokens, Fonts) sowie Navigation und Foot
 ## Requirements
 
 ### Requirement: Design-Tokens
-Das System SHALL Farben, Schriften, Layout-Werte und die Badge-Palette aus dem ecke.lt Design-System beziehen, indem es `https://ecke-design-system.pages.dev/v1/styles.css` (`ecke-design-system:styles@1`) einbindet; eine eigene Kopie der Tokens SHALL es nicht mehr geben. Das helle und dunkle Farbschema kommen aus dem Design-System.
+Das System SHALL Farben, Schriften, Layout-Werte und die Badge-Palette aus dem ecke.lt Design-System beziehen, indem es `https://design.ecke.lt/v1/styles.css` (`ecke-design-system:styles@1`) einbindet; eine eigene Kopie der Tokens SHALL es nicht mehr geben. Das helle und dunkle Farbschema kommen aus dem Design-System.
 
 #### Scenario: Dunkles Farbschema
 - **WHEN** der Browser `prefers-color-scheme: dark` meldet

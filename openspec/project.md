@@ -43,15 +43,15 @@ Bekannter Nutzer: nils.ecke.lt verlinkt auf blog.ecke.lt [landscape:inventory/ra
 | Profilseite `https://nils.ecke.lt` sowie `/impressum/` und `/datenschutz/` (Links) | nils.ecke.lt | `nils.ecke.lt:site@1` | [src/consts.ts:5; src/consts.ts:9; src/components/Footer.astro:23-25] |
 | Buchungsseite `https://book.ecke.lt/30min` (Link) | booking | `booking:booking-page@1` | [src/consts.ts:10] |
 | Worker mit Static Assets (Hosting) | Cloudflare | `cloudflare-workers:static-assets@1` | [wrangler.jsonc:1-7; landscape:inventory/raw/cloudflare.yaml:32-39] |
-| Design-System-Stylesheet `https://ecke-design-system.pages.dev/v1/styles.css` (Tokens, Schriften, Grundstile) | ecke-design-system | `ecke-design-system:styles@1` | [src/components/BaseHead.astro:20] |
-| Mermaid-Adapter `https://ecke-design-system.pages.dev/v1/mermaid.js` (nur Beiträge mit Diagramm) | ecke-design-system | `ecke-design-system:mermaid@1` | [src/layouts/PostLayout.astro:25; src/layouts/PostLayout.astro:56-60] |
+| Design-System-Stylesheet `https://design.ecke.lt/v1/styles.css` (Tokens, Schriften, Grundstile) | ecke-design-system | `ecke-design-system:styles@1` | [src/components/BaseHead.astro:20] |
+| Mermaid-Adapter `https://design.ecke.lt/v1/mermaid.js` (nur Beiträge mit Diagramm) | ecke-design-system | `ecke-design-system:mermaid@1` | [src/layouts/PostLayout.astro:25; src/layouts/PostLayout.astro:56-60] |
 
 ## Datenflüsse
 
 1. **Schreiben:** Beiträge liegen als Markdown mit Frontmatter (`title`, `description`, `pubDate`, `updatedDate`, `tags`, `draft`) unter `src/content/blog/` [README.md:19-39; src/content.config.ts:4-14].
 2. **Build:** `npm run build` (`astro build`) erzeugt statisches HTML, RSS und Sitemap in `./dist` [package.json:8; README.md:13; astro.config.mjs:10]. Nur Beiträge ohne `draft` und mit `pubDate` in der Vergangenheit werden gebaut [src/utils/posts.ts:14-20].
 3. **Deploy:** `wrangler.jsonc` beschreibt den Worker `blog`, der das Verzeichnis `./dist` als Static Assets ausliefert [wrangler.jsonc:1-7]. Deployt wird per GitHub Actions mit `wrangler deploy` und anschließender Live-Prüfung (Change `deploy-per-ci`, 2026-10-17) [.github/workflows/deploy.yml].
-4. **Seitenabruf:** Der Browser lädt HTML, CSS, Fonts und Bilder vom Worker `blog` über die Custom Domain blog.ecke.lt [landscape:inventory/overlay.yaml:27-34]. Das Design-System-Stylesheet kommt von ecke-design-system.pages.dev; `v1/mermaid.js` wird nur auf Beitragsseiten mit Diagramm nachgeladen und rendert im Browser [src/components/BaseHead.astro:20; src/layouts/PostLayout.astro:56-60; README.md:54-60].
+4. **Seitenabruf:** Der Browser lädt HTML, CSS, Fonts und Bilder vom Worker `blog` über die Custom Domain blog.ecke.lt [landscape:inventory/overlay.yaml:27-34]. Das Design-System-Stylesheet kommt von design.ecke.lt; `v1/mermaid.js` wird nur auf Beitragsseiten mit Diagramm nachgeladen und rendert im Browser [src/components/BaseHead.astro:20; src/layouts/PostLayout.astro:56-60; README.md:54-60].
 5. **Weiterleitungen:** Navigation und Footer verlinken auf nils.ecke.lt (Profil, Impressum, Datenschutz) und book.ecke.lt/30min; der Blog sendet selbst keine Daten [src/consts.ts:7-11; src/components/Footer.astro:21-25].
 
 ## Abhängigkeiten

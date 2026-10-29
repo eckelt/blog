@@ -54,7 +54,7 @@ flowchart LR
 Das Rendering passiert **client-seitig** und liest die Design-Tokens live aus —
 Diagramme nutzen also dieselben Farben/Schriften wie die Seite und schalten
 automatisch zwischen Light/Dark um. Gerendert wird mit `v1/mermaid.js` des
-Design-Systems (`https://ecke-design-system.pages.dev/v1/mermaid.js`); es wird
+Design-Systems (`https://design.ecke.lt/v1/mermaid.js`); es wird
 nur auf Beiträgen geladen, die tatsächlich ein Diagramm enthalten. Die
 Akzentfarbe kommt vom ersten Tag des Beitrags (`--diagram-accent` an `<html>`,
 siehe `src/styles/global.css`).
@@ -75,7 +75,7 @@ prüft danach, dass blog.ecke.lt diesen Build zeigt. Von Hand anstoßen geht üb
 
 Tokens, Schriften und Basis-Stile kommen aus dem gemeinsamen
 ecke.lt Design-System: `BaseHead.astro` bindet
-`https://ecke-design-system.pages.dev/v1/styles.css` ein. Der Blog hat keine
+`https://design.ecke.lt/v1/styles.css` ein. Der Blog hat keine
 eigene Token-Kopie und keine eigenen Fonts mehr; `src/styles/global.css`
 enthält nur Blog-Layout und die Stellen, an denen der Blog bewusst von den
 Basis-Stilen des Design-Systems abweicht.

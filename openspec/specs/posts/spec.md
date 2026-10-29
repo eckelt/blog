@@ -39,7 +39,7 @@ Das System SHALL jeden veröffentlichten Beitrag unter `/blog/<id>/` rendern, wo
 - **THEN** bekommt jeder Tag eine Badge-Farbe aus einer festen Zuordnung (`AI`, `Hackers&Wizards` → ai, `Software Factory` → arch, sonst cloud), und der erste Tag bestimmt die Akzentfarbe der Diagramme [src/layouts/PostLayout.astro:13-23; src/layouts/PostLayout.astro:28]
 
 ### Requirement: Markdown-Erweiterungen
-Das System SHALL Code-Blöcke mit Sprache `mermaid` als `<pre class="mermaid">` ausgeben und Tabellen in ein `div.table-scroll` einpacken. Diagramme SHALL der Mermaid-Adapter des Design-Systems (`https://ecke-design-system.pages.dev/v1/mermaid.js`, `ecke-design-system:mermaid@1`) rendern; die Akzentfarbe des Beitrags SHALL der Blog als `--diagram-accent` setzen.
+Das System SHALL Code-Blöcke mit Sprache `mermaid` als `<pre class="mermaid">` ausgeben und Tabellen in ein `div.table-scroll` einpacken. Diagramme SHALL der Mermaid-Adapter des Design-Systems (`https://design.ecke.lt/v1/mermaid.js`, `ecke-design-system:mermaid@1`) rendern; die Akzentfarbe des Beitrags SHALL der Blog als `--diagram-accent` setzen.
 
 #### Scenario: Seite mit Diagramm
 - **WHEN** eine Beitragsseite ein `pre.mermaid` enthält
