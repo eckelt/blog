@@ -8,7 +8,7 @@ Das `twin.json` mischt Architektur, Betrieb (`deployment`, Pipelines, `deploys-t
 ## Was
 - `twin.json` → `architecture.json` (`schemaVersion: 5`), ausgeräumt: `evidence`, `deployment`, `asOf`, `managed`, Container `deploy` (Pipeline), Schnittstelle `site#hosting` (`deploys-to`).
 - Neu: `site` nennt seine Laufeinheit `runtime: "workers/blog"`.
-- Die ADR `2026-10-17-deploy-per-ci` nannte nur die Pipeline; sie hängt danach am System.
+- Die ADR `2026-10-17-deploy-per-ci` nannte nur die Pipeline; sie wandert an `site`, den Container, den die Pipeline deployt.
 - `.gitattributes`: `architecture.json merge=manifest-json` (die alte Zeile bleibt in der Übergangszeit).
 - Das Soll auf diesem Branch ist noch das ausgeräumte `twin.json` (v4), damit die laufende Werkbank das Delta zeigt. Umbenennen, `schemaVersion: 5` und `runtime` setzt das Gewerk mit `scripts/manifest-umstellen` des Landscape-Repos um, erst nachdem dessen Werkzeug-Schritt live ist.
 
