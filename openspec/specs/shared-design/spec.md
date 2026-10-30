@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Eigene Kopie der ecke.lt-Designsprache (Tokens, Fonts) sowie Navigation und Footer mit Verweisen auf die anderen ecke.lt-Seiten. Ist-Zustand zu Commit `c8304618a6c84a595d80744ebb581a10bc3e773e` (Landscape-Inventur 2026-09-27); Fundstellen `[datei:zeile]` beziehen sich auf diesen Commit.
+Eigene Kopie der ecke.lt-Designsprache (Tokens, Fonts) sowie Navigation und Footer mit Verweisen auf die anderen ecke.lt-Seiten. Ist-Zustand zu Commit `c8304618a6c84a595d80744ebb581a10bc3e773e` (Landscape-Inventur 2026-09-27).
 
 ## Requirements
 
@@ -18,8 +18,8 @@ Das System SHALL Farben, Schriften, Layout-Werte und die Badge-Palette aus dem e
 - **THEN** enthält das Ergebnis weder `tokens.css` noch eigene Definitionen der Design-System-Tokens
 
 ### Requirement: Navigation und Footer
-Das System SHALL im Kopf Links auf „Blog“ (`/`), „Profil“ (`https://nils.ecke.lt`) und „Termin buchen“ (`https://book.ecke.lt/30min`) zeigen und im Footer auf Impressum und Datenschutz von nils.ecke.lt verlinken [src/consts.ts:5-11; src/components/Header.astro:9-20; src/components/Footer.astro:21-25].
+Das System SHALL im Kopf Links auf „Blog“ (`/`), „Profil“ (`https://nils.ecke.lt`) und „Termin buchen“ (`https://book.ecke.lt/30min`) zeigen und im Footer auf Impressum und Datenschutz von nils.ecke.lt verlinken.
 
 #### Scenario: Rechtstexte
 - **WHEN** jemand im Footer auf „Impressum“ oder „Datenschutz“ klickt
-- **THEN** führt der Link zu `https://nils.ecke.lt/impressum/` bzw. `https://nils.ecke.lt/datenschutz/` [src/components/Footer.astro:23-25; src/consts.ts:5]
+- **THEN** führt der Link zu `https://nils.ecke.lt/impressum/` bzw. `https://nils.ecke.lt/datenschutz/`
