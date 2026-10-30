@@ -5,10 +5,8 @@
     "name": "blog",
     "summary": "Damit Nils längere Gedanken veröffentlichen kann: Beiträge mit RSS unter blog.ecke.lt.",
     "repository": "eckelt/blog",
-    "managed": "oneshot",
     "visibility": "public",
     "url": "https://blog.ecke.lt/",
-    "asOf": "a92b8cf12e8aa6e27ffee339d94b87b5bcde0c6c",
     "specs": [
       "posts",
       "feeds-seo",
@@ -24,7 +22,6 @@
       "technology": "Astro, Cloudflare Workers Static Assets",
       "summary": "Statische Website aus Markdown-Beiträgen mit RSS und Sitemap; Gestaltung und Diagramme aus dem ecke.lt Design-System.",
       "path": "src/",
-      "deployment": "Cloudflare Worker blog mit Static Assets, Custom Domain blog.ecke.lt; Deploy per CI",
       "url": "https://blog.ecke.lt/",
       "visibility": "public",
       "specs": [
@@ -32,10 +29,6 @@
         "feeds-seo",
         "shared-design",
         "deploy"
-      ],
-      "evidence": [
-        "src/components/BaseHead.astro:20",
-        "src/layouts/PostLayout.astro:57-59"
       ],
       "interfaces": [
         {
@@ -51,10 +44,7 @@
           "contractRef": "nils.ecke.lt:site@1",
           "protocol": "HTTPS Hyperlink",
           "relation": "links-to",
-          "summary": "Profil-Link auf nils.ecke.lt",
-          "evidence": [
-            "src/consts.ts:5"
-          ]
+          "summary": "Profil-Link auf nils.ecke.lt"
         },
         {
           "id": "booking-page",
@@ -62,10 +52,7 @@
           "contractRef": "booking:booking-page@1",
           "protocol": "HTTPS Hyperlink",
           "relation": "links-to",
-          "summary": "„Termin buchen“ auf book.ecke.lt/30min",
-          "evidence": [
-            "src/consts.ts:10"
-          ]
+          "summary": "„Termin buchen“ auf book.ecke.lt/30min"
         },
         {
           "id": "design-system-styles",
@@ -82,61 +69,11 @@
           "protocol": "HTTPS JavaScript",
           "relation": "imports",
           "summary": "rendert Diagramme mit /v1/mermaid.js statt eigenem Skript"
-        },
-        {
-          "id": "hosting",
-          "direction": "consumes",
-          "contractRef": "cloudflare-workers:static-assets@1",
-          "protocol": "Cloudflare Workers Static Assets",
-          "relation": "deploys-to",
-          "summary": "Worker blog, assets.directory ./dist",
-          "evidence": [
-            "wrangler.jsonc:1-7"
-          ]
         }
       ],
       "adrs": [
         "docs/adr/2026-09-01-alle-apps-nutzen-design-system.md",
         "docs/adr/2026-10-19-design-ecke-lt.md"
-      ]
-    },
-    {
-      "id": "deploy",
-      "name": "Deploy-Workflow",
-      "kind": "pipeline",
-      "technology": "GitHub Actions",
-      "summary": "Baut bei Änderungen an Quellen oder Konfiguration, deployt den Worker blog und prüft danach live.",
-      "path": ".github/workflows/deploy.yml",
-      "deployment": "GitHub Actions (ubuntu-latest)",
-      "specs": [
-        "deploy"
-      ],
-      "interfaces": [
-        {
-          "id": "actions",
-          "direction": "consumes",
-          "contractRef": "github-actions:workflows@1",
-          "protocol": "GitHub Actions",
-          "summary": "Runner ubuntu-latest, actions/checkout@v7, actions/setup-node@v7 (Node 22)",
-          "evidence": [
-            ".github/workflows/deploy.yml:5-35"
-          ]
-        },
-        {
-          "id": "workers-deploy",
-          "direction": "consumes",
-          "contractRef": "cloudflare-workers:deploy-api@1",
-          "protocol": "Cloudflare API (wrangler deploy)",
-          "relation": "writes",
-          "perspective": "deployment",
-          "summary": "npx wrangler@4 deploy; Secrets CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID",
-          "evidence": [
-            ".github/workflows/deploy.yml:45-48"
-          ]
-        }
-      ],
-      "adrs": [
-        "docs/adr/2026-10-17-deploy-per-ci.md"
       ]
     }
   ]
