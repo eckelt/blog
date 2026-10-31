@@ -1,16 +1,16 @@
 ---
 title: "code.talks 2026: Architecture Overview gegen Comprehension Debt"
 description: "Folien, Quellen und Links zu meinem Vortrag auf der code.talks 2026: Wie ich Änderungen als Delta-Spec lese und mir die Struktur auf einer Karte zeigen lasse."
-pubDate: 2026-11-05
+pubDate: 2026-10-31
 tags: ["AI", "Architektur"]
-draft: true
+draft: false
 ---
 
 <!--
-ENTWURF — vor dem Talk prüfen:
-- PDF unter public/talks/codetalks-2026.pdf ablegen (Export aus den Folien, ohne Backup-Folien)
-- Kurzlink ecke.lt/codetalks (und ECKE.LT/CODETALKS) auf diese Seite zeigen lassen
-- draft: false setzen. Achtung: Der Beitrag erscheint erst, wenn nach pubDate neu gebaut wird.
+Vor dem Talk:
+- PDF durch den finalen Export ersetzen (ohne Backup-Folien)
+- pubDate auf 2026-11-05 stellen
+- Kurzlink ecke.lt/codetalks (und ECKE.LT/CODETALKS) zeigt auf diese Seite
 -->
 
 Am 5. November habe ich auf der code.talks in Hamburg erzählt, wie ich mit Agenten baue, ohne den Überblick über mein eigenes System zu verlieren. Kein Tool zum Herunterladen, keine Studie, sondern ein Erfahrungsbericht aus meinem Labor: Änderungen entstehen als Delta-Spec, und bevor der Agent baut, zeigt er mir den Plan auf einer Karte.
