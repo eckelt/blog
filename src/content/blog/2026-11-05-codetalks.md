@@ -12,7 +12,7 @@ Am 5. November habe ich auf der code.talks in Hamburg erzählt, wie ich mit Agen
 
 ## Die Kernidee
 
-Mit Agenten wandert das Verstehen vom Code in die Spec. Aber auch die Spec wächst schneller, als ich lesen kann. Deshalb lese ich das Verhalten und lasse mir die Struktur zeigen.
+Mit Agenten wandert das Verstehen vom Code in die Spec. Aber auch Specs liest man irgendwann nicht mehr selbst. Deshalb lasse ich mir das Verhalten vom Agenten erklären und die Struktur auf einer Karte zeigen. Die Erklärung kommt vom selben Agenten, der das Delta geschrieben hat; die Karte zeigt, was tatsächlich im Manifest steht.
 
 ## Zum Mitnehmen
 
