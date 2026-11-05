@@ -1,17 +1,10 @@
 ---
 title: "code.talks 2026: Architecture Overview gegen Comprehension Debt"
 description: "Folien, Quellen und Links zu meinem Vortrag auf der code.talks 2026: Wie ich Änderungen als Delta-Spec lese und mir die Struktur auf einer Karte zeigen lasse."
-pubDate: 2026-10-31
+pubDate: 2026-11-05
 tags: ["AI", "Architektur"]
 draft: false
 ---
-
-<!--
-Vor dem Talk:
-- PDF durch den finalen Export ersetzen (ohne Backup-Folien)
-- pubDate auf 2026-11-05 stellen
-- Kurzlink ecke.lt/codetalks (und ECKE.LT/CODETALKS) zeigt auf diese Seite
--->
 
 Am 5. November habe ich auf der code.talks in Hamburg erzählt, wie ich mit Agenten baue, ohne den Überblick über mein eigenes System zu verlieren. Kein Tool zum Herunterladen, keine Studie, sondern ein Erfahrungsbericht aus meinem Labor: Änderungen entstehen als Delta-Spec, und bevor der Agent baut, zeigt er mir den Plan auf einer Karte.
 
@@ -23,9 +16,9 @@ Mit Agenten wandert das Verstehen vom Code in die Spec. Aber auch die Spec wäch
 
 ## Zum Mitnehmen
 
-1. Ist-Spec ins Repo.
+1. Ist-Spec ins Repo. Nur das Was.
 2. Änderungen nur als Delta-Spec. Reviewt wird das Delta, nicht der Code.
-3. Die Struktur als Manifest daneben pflegen und daraus eine Übersicht zeichnen lassen. Mermaid reicht für den Anfang.
+3. Das Wie getrennt davon: die Struktur als Manifest und Entscheidungen als ADRs pflegen und daraus eine Übersicht zeichnen lassen. Mermaid reicht für den Anfang.
 4. Die Spec mit einem Rebuild im leeren Repo testen.
 
 Baut euch das Werkzeug, das ihr braucht. Meins ist nur ein Beispiel.
@@ -37,6 +30,7 @@ Baut euch das Werkzeug, das ihr braucht. Meins ist nur ein Beispiel.
 - [OpenSpec](https://github.com/Fission-AI/OpenSpec): Spec-Driven Development für KI-Coding-Assistenten
 - Robert C. Martin (Uncle Bob) im [Aviator-Podcast](https://www.youtube.com/watch?v=5kCISBJwoZo)
 - Dave Farley, Modern Software Engineering: [Video auf YouTube](https://www.youtube.com/watch?v=EkH_uoybj8k)
+- Vlad Khononov: [Balanced Coupling](https://coupling.dev) und der [modularity-Skill](https://github.com/vladikk/modularity), den ich als Nächstes ausprobiere
 
 ## Feedback und Gespräch
 
